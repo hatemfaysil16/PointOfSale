@@ -11,6 +11,8 @@
 			<div class="container-fluid">
 				@yield('page-header')
 				@yield('content')
+			</div>
+		</div>
             	@include('layouts.footer.footer')
 				@include('layouts.css_script.script.scripts')	
 	</body>
