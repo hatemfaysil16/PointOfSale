@@ -20,9 +20,9 @@ add new product
     
 @endsection
 @section('content')
-								<!-- row -->
-                                <div class="row row-sm">
-                                    <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
+<!-- row -->
+<div class="row row-sm">
+<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
                                         <div class="card  box-shadow-0">
                                             <div class="card-header">
                                                 <h4 class="card-title mb-1">Basic Information</h4>
@@ -141,14 +141,11 @@ add new product
                                     
                                 </div>
                                 <!-- row -->
-                                @section('js')
-                                <script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
-                                <script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
-                                
-                                @endsection
                 
 @endsection
 
-@section('js')
 
+@section('js')
+<script src="{{URL::asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+<script src="{{URL::asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>                                
 @endsection
