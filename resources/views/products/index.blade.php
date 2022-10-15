@@ -13,7 +13,16 @@ Products
             <h4 class="content-title mb-0 my-auto">Products</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ All Products</span>
         </div>
     </div>
-    
+    <form>
+        <div class="input-group">
+            <input class="form-control" placeholder="Search for..." type="text">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">
+                    <span class="input-group-btn"><i class="fa fa-search"></i></span>
+                </button>
+            </span>
+        </div>
+    </form>
 </div>
 <!-- breadcrumb -->
 @endsection

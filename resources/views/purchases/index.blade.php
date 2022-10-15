@@ -14,7 +14,16 @@ Clients | All Purchases
             <h4 class="content-title mb-0 my-auto">Purchases</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ All Purchases</span>
         </div>
     </div>
-    
+    <form>
+        <div class="input-group">
+            <input class="form-control" placeholder="Search for..." type="text">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">
+                    <span class="input-group-btn"><i class="fa fa-search"></i></span>
+                </button>
+            </span>
+        </div>
+    </form>
 </div>
 <!-- breadcrumb -->
 
@@ -38,8 +47,6 @@ Clients | All Purchases
                                 <th>Production Date</th>
                                 <th>Expiry Date</th>
                                 <th>Total</th>
-                                <th>Sold</th>
-                                <th>Left</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -53,8 +60,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -71,8 +76,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -89,8 +92,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -107,8 +108,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -125,8 +124,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -143,8 +140,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -161,8 +156,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -179,8 +172,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -197,8 +188,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -215,8 +204,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -233,8 +220,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
@@ -251,8 +236,6 @@ Clients | All Purchases
                                 <td>24/06/2022</td>
                                 <td>24/06/2022</td>
                                 <td>223512</td>
-                                <td>123312</td>
-                                <td>314414</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
