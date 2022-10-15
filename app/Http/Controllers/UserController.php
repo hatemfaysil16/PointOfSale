@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Libs\HandleImage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,6 +10,7 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+    use HandleImage ;
 /**
 * Display a listing of the resource.
 *
@@ -42,17 +44,20 @@ return view('users.Add_user',compact('roles'));
 */
 public function store(Request $request)
 {
+$model=User::first();
+$a = $model->addMediaFromRequest('image')->toMediaCollection('images');
+dd($a);
 $this->validate($request, [
 'name' => 'required',
 'email' => 'required|email|unique:users,email',
 'password' => 'required|same:confirm-password',
-'roles_name' => 'required'
+'roles_name' => 'required',
+'image'=>'mimes:jpg,jpeg,png',
 ]);
-
 $input = $request->all();
-
-
 $input['password'] = Hash::make($input['password']);
+
+// $this->CreateImage($request,$user,'profile');
 
 $user = User::create($input);
 $user->assignRole($request->input('roles_name'));

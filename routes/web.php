@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoiceController;
@@ -17,14 +16,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource("clients", ClientController::class);
     Route::resource("purchases", PurchaseController::class);
     Route::resource("invoices",InvoiceController::class);
-
-
-
-
-
-
-    
 });
-
-
 require __DIR__.'/auth.php';
