@@ -44,9 +44,6 @@ return view('users.Add_user',compact('roles'));
 */
 public function store(Request $request)
 {
-$model=User::first();
-$a = $model->addMediaFromRequest('image')->toMediaCollection('images');
-dd($a);
 $this->validate($request, [
 'name' => 'required',
 'email' => 'required|email|unique:users,email',
@@ -56,10 +53,8 @@ $this->validate($request, [
 ]);
 $input = $request->all();
 $input['password'] = Hash::make($input['password']);
-
-// $this->CreateImage($request,$user,'profile');
-
 $user = User::create($input);
+$this->CreateImage($request,$user,'profile');
 $user->assignRole($request->input('roles_name'));
 return redirect()->route('users.index')
 ->with('success','تم اضافة المستخدم بنجاح');
@@ -102,7 +97,8 @@ $this->validate($request, [
 'name' => 'required',
 'email' => 'required|email|unique:users,email,'.$id,
 'password' => 'same:confirm-password',
-'roles' => 'required'
+'roles' => 'required',
+'image'=>'mimes:jpg,jpeg,png',
 ]);
 $input = $request->all();
 if(!empty($input['password'])){
@@ -114,6 +110,7 @@ $user = User::find($id);
 $user->update($input);
 DB::table('model_has_roles')->where('model_id',$id)->delete();
 $user->assignRole($request->input('roles'));
+$this->UpdateImage($request,$user,'profile');
 return redirect()->route('users.index')
 ->with('success','تم تحديث معلومات المستخدم بنجاح');
 }

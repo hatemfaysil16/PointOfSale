@@ -47,7 +47,8 @@
                     </div>
                 </div><br>
 
-                {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+                {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id], 'enctype' => 'multipart/form-data'])  !!}
+
                 <div class="">
 
                     <div class="row mg-b-20">
@@ -83,7 +84,7 @@
                             <option value="{{ $user->Status}}">{{ $user->Status}}</option>
                             <option value="مفعل">مفعل</option>
                             <option value="غير مفعل">غير مفعل</option>
-                        </select>
+                            </select>
                     </div>
                 </div>
 
@@ -96,6 +97,9 @@
                         </div>
                     </div>
                 </div>
+
+
+                @include('layouts.component.image.edit',['model'=>$user,'NameUrl'=>'profile'])
                 <div class="mg-t-30">
                     <button class="btn btn-main-primary pd-x-20" type="submit">تحديث</button>
                 </div>

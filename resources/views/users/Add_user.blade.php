@@ -48,8 +48,7 @@
                         <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">رجوع</a>
                     </div>
                 </div><br>
-                <form class="parsley-style-1" id="selectForm2" autocomplete="off" name="selectForm2"
-                    action="{{route('users.store','test')}}" method="post">
+                <form class="parsley-style-1" id="selectForm2" autocomplete="off" name="selectForm2" action="{{route('users.store','test')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
 
                     <div class="">
@@ -102,14 +101,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="card-body">
-                        <div class="form-group col-6 offset-3">
-                            
-                            <input type="file" name="image" class="dropify" data-height="300" />
-                        </div>
-                    </div>
-
+                    @include('layouts.component.image.create')
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <button class="btn btn-main-primary pd-x-20" type="submit">تاكيد</button>
                     </div>
