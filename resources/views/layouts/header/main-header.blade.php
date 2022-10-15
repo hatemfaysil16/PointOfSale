@@ -27,9 +27,9 @@
 								<div class="dropdown-menu">
 									<div class="main-header-profile bg-primary p-3">
 										<div class="d-flex wd-100p">
-											<div class="main-img-user"><img alt="" src="{{URL::asset('assets/img/faces/6.jpg')}}" class=""></div>
+											<div class="main-img-user"><img alt="" src="{{ asset(Auth::user()->getFirstMediaUrl('profile') )}}" class=""></div>
 											<div class="mr-3 my-auto">
-												<h6>Petey Cruiser</h6><span>Premium Member</span>
+												<h6>{{Auth::user()->name}}</h6><span>{{Auth::user()->email}}</span>
 											</div>
 										</div>
 									</div>
