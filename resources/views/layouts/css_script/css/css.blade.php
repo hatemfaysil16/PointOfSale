@@ -10,6 +10,8 @@
 <link href="{{URL::asset('assets/plugins/sidebar/sidebar.css')}}" rel="stylesheet">
 <!-- Sidemenu css -->
 <link rel="stylesheet" href="{{URL::asset('assets/css/sidemenu.css')}}">
+<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+
 <!--- Style css -->
 <link href="{{URL::asset('assets/css/style.css')}}" rel="stylesheet">
 <!--- Dark-mode css -->

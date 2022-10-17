@@ -41,14 +41,25 @@ Purchases | Add New Purchase
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <input class="form-control" list="productNameOptions" id="product-name-list" placeholder="Product Name">
-                                <datalist id="productNameOptions">
-                                    <option value="San Francisco">
-                                    <option value="New York">
-                                    <option value="Seattle">
-                                    <option value="Los Angeles">
-                                    <option value="Chicago">
-                                </datalist>
+                                <select class="form-control select2"  id="product-name-list" placeholder="Product Name">
+                                    <option label="Choose one">
+                                    </option>
+                                    <option value="Firefox">
+                                        Firefox
+                                    </option>
+                                    <option value="Chrome">
+                                        Chrome
+                                    </option>
+                                    <option value="Safari">
+                                        Safari
+                                    </option>
+                                    <option value="Opera">
+                                        Opera
+                                    </option>
+                                    <option value="Internet Explorer">
+                                        Internet Explorer
+                                    </option>
+                                </select>
                             </div>
                             
                         </div>
@@ -111,6 +122,7 @@ Purchases | Add New Purchase
 @endsection
 
 @section('js')
+<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <script>
 
@@ -121,6 +133,12 @@ $(function() {
 	$('.fc-datepicker').datepicker({
 		showOtherMonths: true,
 		selectOtherMonths: true
+	});
+    $(document).ready(function() {
+		$('.select2').select2({
+			placeholder: 'Product Name',
+		});
+		
 	});
 });
 </script>
