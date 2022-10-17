@@ -57,14 +57,25 @@ Invoices | Add New Invoice
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <input class="form-control" list="customerOptions" id="customer-name-list" placeholder="Invoice to">
-                                <datalist id="customerOptions">
-                                    <option value="San Francisco">
-                                    <option value="New York">
-                                    <option value="Seattle">
-                                    <option value="Los Angeles">
-                                    <option value="Chicago">
-                                </datalist>
+                                <select class="form-control select2"  id="customer-name-list" placeholder="Invoice to">
+                                    <option label="Choose one">
+                                    </option>
+                                    <option value="Firefox">
+                                        Firefox
+                                    </option>
+                                    <option value="Chrome">
+                                        Chrome
+                                    </option>
+                                    <option value="Safari">
+                                        Safari
+                                    </option>
+                                    <option value="Opera">
+                                        Opera
+                                    </option>
+                                    <option value="Internet Explorer">
+                                        Internet Explorer
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -118,14 +129,25 @@ Invoices | Add New Invoice
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <input class="form-control" list="productOptions" id="product-name-list" placeholder="Product Name">
-                                <datalist id="productOptions">
-                                    <option value="San Francisco">
-                                    <option value="New York">
-                                    <option value="Seattle">
-                                    <option value="Los Angeles">
-                                    <option value="Chicago">
-                                </datalist>
+                                <select class="form-control select2"  id="product-name-list" placeholder="Product Name">
+                                    <option label="Choose one">
+                                    </option>
+                                    <option value="Firefox">
+                                        Firefox
+                                    </option>
+                                    <option value="Chrome">
+                                        Chrome
+                                    </option>
+                                    <option value="Safari">
+                                        Safari
+                                    </option>
+                                    <option value="Opera">
+                                        Opera
+                                    </option>
+                                    <option value="Internet Explorer">
+                                        Internet Explorer
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -369,6 +391,7 @@ Invoices | Add New Invoice
 @endsection
 
 @section('js')
+<script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <script>
 
@@ -379,6 +402,15 @@ $(function() {
 	$('.fc-datepicker').datepicker({
 		showOtherMonths: true,
 		selectOtherMonths: true
+	});
+    $(document).ready(function() {
+		$('.select2').select2({
+			placeholder: 'Invoice to',
+		});
+		
+        $('#product-name-list').select2({
+			placeholder: 'Product Name',
+		});
 	});
 });
 </script>
