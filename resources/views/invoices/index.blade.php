@@ -46,6 +46,8 @@ Invoices | All Invoices
                                 <th>City</th>
                                 <th>State</th>
                                 <th>Total</th>
+                                <th>Paid</th>
+                                <th>Left</th>
                                 <th>Preview</th>
                             </tr>
                         </thead>
@@ -58,6 +60,9 @@ Invoices | All Invoices
                                 <td>Shebin Alkom</td>
                                 <td>Menofia</td>
                                 <td>223512424</td>
+                                <td>223512424</td>
+                                <td>223512424</td>
+
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
@@ -71,6 +76,8 @@ Invoices | All Invoices
                                 <td>Ahmed Mikkawe</td>
                                 <td>Shebin Alkom</td>
                                 <td>Menofia</td>
+                                <td>223512424</td>
+                                <td>223512424</td>
                                 <td>223512424</td>
                                 <td>
                                     <div class="btn-icon-list">
@@ -86,6 +93,8 @@ Invoices | All Invoices
                                 <td>Shebin Alkom</td>
                                 <td>Menofia</td>
                                 <td>223512424</td>
+                                <td>223512424</td>
+                                <td>223512424</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
@@ -99,6 +108,8 @@ Invoices | All Invoices
                                 <td>Ahmed Mikkawe</td>
                                 <td>Shebin Alkom</td>
                                 <td>Menofia</td>
+                                <td>223512424</td>
+                                <td>223512424</td>
                                 <td>223512424</td>
                                 <td>
                                     <div class="btn-icon-list">

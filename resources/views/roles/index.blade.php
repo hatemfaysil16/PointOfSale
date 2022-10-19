@@ -68,7 +68,7 @@ User Roles
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-right">
                             @can('اضافة صلاحية')
-                                <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">اضافة</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">Add</a>
                             @endcan
                         </div>
                     </div>
@@ -82,8 +82,8 @@ User Roles
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>الاسم</th>
-                                <th>العمليات</th>
+                                <th>Role Name</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,19 +94,19 @@ User Roles
                                     <td>
                                         @can('عرض صلاحية')
                                             <a class="btn btn-success btn-sm"
-                                                href="{{ route('roles.show', $role->id) }}">عرض</a>
+                                                href="{{ route('roles.show', $role->id) }}">Show</a>
                                         @endcan
                                         
                                         @can('تعديل صلاحية')
                                             <a class="btn btn-primary btn-sm"
-                                                href="{{ route('roles.edit', $role->id) }}">تعديل</a>
+                                                href="{{ route('roles.edit', $role->id) }}">Edit</a>
                                         @endcan
 
                                         @if ($role->name !== 'owner')
                                             @can('حذف صلاحية')
                                                 {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy',
                                                 $role->id], 'style' => 'display:inline']) !!}
-                                                {!! Form::submit('حذف', ['class' => 'btn btn-danger btn-sm']) !!}
+                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
                                                 {!! Form::close() !!}
                                             @endcan
                                         @endif

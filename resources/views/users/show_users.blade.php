@@ -52,7 +52,7 @@
                                 <th class="wd-15p border-bottom-0">User Status</th>
                                 <th class="wd-15p border-bottom-0">Photo</th>
                                 <th class="wd-15p border-bottom-0">Role</th>
-                                <th class="wd-10p border-bottom-0">العمليات</th>
+                                <th class="wd-10p border-bottom-0">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

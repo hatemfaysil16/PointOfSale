@@ -84,45 +84,93 @@ Invoices | Add New Invoice
                             </div>
                         </div>
                         <div class="col-12">
-                            <h4 class="card-title mb-1">Customer Information</h4>
+                            <h4 class="card-title mb-3">Customer Information</h4>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
-                            </div>                            
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="companyName" placeholder="Company Name">
-                                </div>                            
+                            <h6 class="card-title mb-1">Invoice To</h6>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                                    </div>                            
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="companyName" placeholder="Company Name">
+                                        </div>                            
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="streetAddress" placeholder="Street Address">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="city" placeholder="City">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="state" placeholder="State">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="zipCode" placeholder="Zip Code">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="streetAddress" placeholder="Street Address">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="city" placeholder="City">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="state" placeholder="State">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="zipCode" placeholder="Zip Code">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="phone" placeholder="Phone">
-                            </div>
-                        </div>
+                            <h6 class="card-title mb-1">Ship To</h6>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                                    </div>                            
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="companyName" placeholder="Company Name">
+                                        </div>                            
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="streetAddress" placeholder="Street Address">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="city" placeholder="City">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="state" placeholder="State">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="zipCode" placeholder="Zip Code">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                    </div>
+                                </div>
+                            </div>                        </div>
+                        
 
                         <div class="col-12">
                             <h4 class="card-title mb-1">Product Information</h4>
