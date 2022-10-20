@@ -24,7 +24,7 @@ Purchases | Add New Purchase
     <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
         <div class="card  box-shadow-0">
             <div class="card-header">
-                <h4 class="card-title mb-1">Client Information</h4>
+                <h4 class="card-title mb-1">Purchase Information</h4>
             </div>
             <div class="card-body pt-0">
                 <form class="form-horizontal" >
@@ -99,6 +99,17 @@ Purchases | Add New Purchase
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="quantity" placeholder="Warehouse Number">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="quantity" placeholder="Invoice Number">
+                            </div>
+                        </div>
+
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="total" placeholder="Total" disabled>

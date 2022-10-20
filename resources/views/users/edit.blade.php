@@ -52,12 +52,12 @@ Users | Edit User
 
                     <div class="row mg-b-20">
                         <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label>اسم المستخدم: <span class="tx-danger">*</span></label>
+                            <label>User Name: <span class="tx-danger">*</span></label>
                             {!! Form::text('name', null, array('class' => 'form-control','required')) !!}
                         </div>
 
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>البريد الالكتروني: <span class="tx-danger">*</span></label>
+                            <label>Email: <span class="tx-danger">*</span></label>
                             {!! Form::text('email', null, array('class' => 'form-control','required')) !!}
                         </div>
                     </div>
@@ -66,23 +66,23 @@ Users | Edit User
 
                 <div class="row mg-b-20">
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label>كلمة المرور: <span class="tx-danger">*</span></label>
+                        <label>Password: <span class="tx-danger">*</span></label>
                         {!! Form::password('password', array('class' => 'form-control','required')) !!}
                     </div>
 
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label> تاكيد كلمة المرور: <span class="tx-danger">*</span></label>
+                        <label> Confirm Password: <span class="tx-danger">*</span></label>
                         {!! Form::password('confirm-password', array('class' => 'form-control','required')) !!}
                     </div>
                 </div>
 
                 <div class="row row-sm mg-b-20">
                     <div class="col-lg-6">
-                        <label class="form-label">حالة المستخدم</label>
+                        <label class="form-label">User Status</label>
                         <select name="Status" id="select-beast" class="form-control  nice-select  custom-select">
                             <option value="{{ $user->Status}}">{{ $user->Status}}</option>
-                            <option value="مفعل">مفعل</option>
-                            <option value="غير مفعل">غير مفعل</option>
+                            <option value="active">Active</option>
+                            <option value="disabled">Disabled</option>
                             </select>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ Users | Edit User
                 <div class="row mg-b-20">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>نوع المستخدم</strong>
+                            <strong>User Role</strong>
                             {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple'))
                             !!}
                         </div>
@@ -100,7 +100,7 @@ Users | Edit User
 
                 @include('layouts.component.image.edit',['model'=>$user,'NameUrl'=>'profile'])
                 <div class="mg-t-30">
-                    <button class="btn btn-main-primary pd-x-20" type="submit">تحديث</button>
+                    <button class="btn btn-main-primary pd-x-20" type="submit">Update</button>
                 </div>
                 {!! Form::close() !!}
             </div>

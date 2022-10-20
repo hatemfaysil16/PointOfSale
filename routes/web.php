@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WareHouseController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function () {
@@ -16,5 +17,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource("clients", ClientController::class);
     Route::resource("purchases", PurchaseController::class);
     Route::resource("invoices",InvoiceController::class);
+    Route::resource("warehouse",WareHouseController::class);
 });
 require __DIR__.'/auth.php';
