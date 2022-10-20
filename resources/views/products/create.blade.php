@@ -1,143 +1,101 @@
 @extends('layouts.master')
 @section('title')
-add new product
+add {{$type}} product
 @stop
 @section("css")
 <link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
-
 @endsection
 @section('page-header')
-    				<!-- breadcrumb -->
-                    <div class="breadcrumb-header justify-content-between">
-                        <div class="my-auto">
-                            <div class="d-flex">
-                                <h4 class="content-title mb-0 my-auto">Products</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ New Product</span>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <!-- breadcrumb -->
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">Products</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{$type}} Product</span>
+            </div>
+        </div>
+        
+    </div>
+    <!-- breadcrumb -->
     
 @endsection
 @section('content')
 <!-- row -->
 <div class="row row-sm">
 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
-                                        <div class="card  box-shadow-0">
-                                            <div class="card-header">
-                                                <h4 class="card-title mb-1">Basic Information</h4>
-                                            </div>
-                                            <div class="card-body pt-0">
-                                                <form class="form-horizontal" >
-                                                    <div class="row">
-                                                        <div class="col-sm-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="product-name" placeholder="Product Name">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="product-group" placeholder="Product Group">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="product-barcode" placeholder="Product Barcode">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-6">
-                                                            <input type="file" id="product-image" class="dropify" data-height="200" accept=".jpg, .png, image/jpeg, image/png"/>
-                                                        </div>
-                                                    </div>
-                                                    <h4 class="card-title mb-1">Box Information</h4>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="box-length" placeholder="Box Length">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="box-width" placeholder="Box Width">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="box-hight" placeholder="Box Hight">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="pack-per-box" placeholder="Packs Per Box">
-                                                    </div>
+    <div class="card  box-shadow-0">
+        <div class="card-header">
+            <h4 class="card-title mb-1">Basic Information</h4>
+        </div>
+        <div class="card-body pt-0">
+            <form class="form-horizontal" >
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                            @include('layouts.component.form-input.input',['name'=>'ProductName','value'=>$Product->ProductName,'placeholder'=>"Product Name"])
+                            @include('layouts.component.form-input.input',['name'=>'ProductGroup','value'=>$Product->ProductGroup,'placeholder'=>"Product Group"])
+                            @include('layouts.component.form-input.input',['name'=>'ProductBarcode','value'=>$Product->ProductBarcode,'placeholder'=>"Product Barcode"])
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <input type="file" id="product-image" class="dropify" data-height="200" accept=".jpg, .png, image/jpeg, image/png"/>
+                        {{--  <img style="cursor: pointer" width="300" height="300" src="{{ asset($model->getFirstMediaUrl($NameImage) )}}">  --}}
+                    </div>
+                </div>
+                <h4 class="card-title mb-1">Box Information</h4>
+                    @include('layouts.component.form-input.input',['name'=>'BoxLength','value'=>$Product->BoxLength,'placeholder'=>"Box Length"])
+                    @include('layouts.component.form-input.input',['name'=>'BoxWidth','value'=>$Product->BoxWidth,'placeholder'=>"Box Width"])
+                    @include('layouts.component.form-input.input',['name'=>'BoxHight','value'=>$Product->BoxHight,'placeholder'=>"Box Hight"])
+                    @include('layouts.component.form-input.input',['name'=>'PacksPerBox','value'=>$Product->PacksPerBox,'placeholder'=>"Packs Per Box"])
 
-                                                    <h4 class="card-title mb-1">Pack Information</h4>
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="pack-type" placeholder="Pack Type">
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-9 col-xl-9 col-md-9 col-sm-6">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="pack-weight" placeholder="Pack Weight">
-                                                                
-                                                            </div>
-                                                            
-                                                        </div>
-                                                        <div class="col-lg-3 col-xl-3 col-md-3 col-sm-6">
-                                                            <div class="form-group">
-                                                                <select class="form-control select2-no-search">
-                                                                    <option label="Choose one">
-                                                                    </option>
-                                                                    <option value="kilograms">
-                                                                        Kilo grams
-                                                                    </option>
-                                                                    <option value="grams">
-                                                                        Grams
-                                                                    </option>
-                                                                    <option value="liters">
-                                                                        Liters
-                                                                    </option>
-                                                                    <option value="gallons">
-                                                                        Gallons
-                                                                    </option>
-                                                                    <option value="ounces">
-                                                                        Ounces
-                                                                    </option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <h4 class="card-title mb-1">Price Information</h4>
-                                                    <div class="row">
-                                                        <div class="col-sm-12 col-md-4">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="box-cost-price" placeholder="Box Cost Price">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-4">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="box-price-shop" placeholder="Box Price (Shop)">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-4">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="box-price-company" placeholder="Box Price (Company)">
-                                                            </div>
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <h4 class="card-title mb-1">Origin Information</h4>
-                                                    <div class="row">
-                                                        <div class="col-sm-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="country-of-origin" placeholder="Country of Origin">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-6">
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" id="manufacturer" placeholder="Manufacturer">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group mb-0 mt-3 justify-content-end">
-                                                        <div>
-                                                            <button type="submit" class="btn btn-primary">Add</button>
-                                                            <button type="reset" class="btn btn-secondary">Cancel</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                <h4 class="card-title mb-1">Pack Information</h4>
+                @include('layouts.component.form-input.input',['name'=>'PackType','value'=>$Product->PackType,'placeholder'=>"Pack Type"])
+                <div class="row">
+                    <div class="col-lg-9 col-xl-9 col-md-9 col-sm-6">
+                        @include('layouts.component.form-input.input',['name'=>'PackWeight','value'=>$Product->PackWeight,'placeholder'=>"Pack Weight"])
+                    </div>
+                    <div class="col-lg-3 col-xl-3 col-md-3 col-sm-6">
+                        <div class="form-group">
+                            <select class="form-control select2-no-search">
+                                <option value="" disabled="">Select Product</option>
+                                @foreach ($Typesofweight as $NewItem)
+                                <option value="{{$NewItem->id}}">{{$NewItem->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="card-title mb-1">Price Information</h4>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        @include('layouts.component.form-input.input',['name'=>'BoxCostPrice','value'=>$Product->BoxCostPrice,'placeholder'=>"Box Cost Price"])
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        @include('layouts.component.form-input.input',['name'=>'BoxPrice_shop','value'=>$Product->BoxPrice_shop,'placeholder'=>"BoxPrice_shop"])
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        @include('layouts.component.form-input.input',['name'=>'BoxPrice_company','value'=>$Product->BoxPrice_company,'placeholder'=>"BoxPrice_company"])
+                    </div>
+                    
+                </div>
+                <h4 class="card-title mb-1">Origin Information</h4>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-input.input',['name'=>'CountryOfOrigin','value'=>$Product->CountryOfOrigin,'placeholder'=>"CountryOfOrigin"])
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="form-group">
+                            @include('layouts.component.form-input.input',['name'=>'Manufacturer','value'=>$Product->Manufacturer,'placeholder'=>"Manufacturer"])
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mb-0 mt-3 justify-content-end">
+                    <div>
+                    @include('layouts.component.form-submit.submit')
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
                                     
                                 </div>
                                 <!-- row -->

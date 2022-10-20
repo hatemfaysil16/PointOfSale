@@ -1,23 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Actions\Typesofweight\StoreTypesofweightAction;
 use App\Actions\Typesofweight\UpdateTypesofweightAction;
 use App\Http\Requests\Typesofweight\StoreTypesofweightRequest;
 use App\Models\Typesofweight;
 use App\ViewModels\Typesofweight\TypesofweightViewModel;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
-
 class TypesofweightController extends Controller
 {
     public function index():View
     {
-        $Typesofweight = Typesofweight::paginate(5);
+        $Typesofweight = Typesofweight::Search();
         return view("typesofweight.index",compact('Typesofweight'));
     }
-
     public function create():View
     {
         return view("typesofweight.create",new TypesofweightViewModel());
@@ -25,21 +21,20 @@ class TypesofweightController extends Controller
     public function store(StoreTypesofweightRequest $request)
     {
         app(StoreTypesofweightAction::class)->handle($request->all());
-        return \redirect()->route('typesofweight.index');
+        return \redirect()->route('typesofweight.index')->with('add','Success create data');     
     }
-
-    public function edit(Typesofweight $typesofweight)
+    public function edit(Typesofweight $typesofweight):View
     {
         return view("typesofweight.create",new TypesofweightViewModel($typesofweight));
     }
     public function update(StoreTypesofweightRequest $request, $id)
     {
         app(UpdateTypesofweightAction::class)->handle($request->all(),$id);
-        return \redirect()->route('typesofweight.index');
+        return \redirect()->route('typesofweight.index')->with('edit','Success edit data');     
     }
     public function destroy(Typesofweight $typesofweight)
     {
         $typesofweight->delete();
-        return \redirect()->route('typesofweight.index');
+        return \redirect()->route('typesofweight.index')->with('delete','Success delete data');    
     }
 }

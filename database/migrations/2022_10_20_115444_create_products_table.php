@@ -30,8 +30,8 @@ class CreateProductsTable extends Migration
 
 
             $table->string('BoxCostPrice');
-            $table->string('BoxPrice(shop)');
-            $table->string('BoxPrice(company)');
+            $table->string('BoxPrice_shop');
+            $table->string('BoxPrice_company');
                         
             $table->string('CountryOfOrigin');
             $table->string('Manufacturer');

@@ -1,26 +1,31 @@
 <?php
 namespace App\ViewModels\Product;
-
+use App\Models\Product;
+use App\Models\Typesofweight;
 use Spatie\ViewModels\ViewModel;
 
 class productViewModel extends ViewModel
 {
-    public Selector $selector;
+    public  $Product;
+    public  $type;
+    public  $Typesofweight;
 
-    public function __construct($selector = null)
+    public function __construct($Product = null)
     {
-        // $this->selector = is_null($selector) ? new Selector(old()) : $selector;
+        $this->type = is_null($Product)?'Add':'Edit' ; 
+        $this->Typesofweight = Typesofweight::get();
+        $this->Product = is_null($Product) ? new Product(old()) : $Product;
     }
 
     public function action(): string
     {
-        return is_null($this->selector->id)
-            ? route('typesofweight.store')
-            : route('typesofweight.update', ['selector' => $this->selector->id]);
+        return is_null($this->Product->id)
+            ? route('products.store')
+            : route('products.update', ['products' => $this->Product->id]);
     }
 
     public function method(): string
     {
-        return is_null($this->selector->id) ? 'POST' : 'PUT';
+        return is_null($this->Product->id) ? 'POST' : 'PUT';
     }
 }

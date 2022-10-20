@@ -6,9 +6,11 @@ use Spatie\ViewModels\ViewModel;
 class TypesofweightViewModel extends ViewModel
 {
     public  $typesofweight;
+    public  $type;
 
     public function __construct($typesofweight = null)
     {
+        $this->type = is_null($typesofweight)?'Add':'Edit' ; 
         $this->typesofweight = is_null($typesofweight) ? new Typesofweight(old()) : $typesofweight;
     }
 

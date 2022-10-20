@@ -14,7 +14,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users',UserController::class);
     Route::resource('roles',RoleController::class);
     Route::resource("typesofweight", TypesofweightController::class)->except('show');
-    Route::resource("products", ProductController::class);
+    Route::resource("products", ProductController::class)->except('show');
     
     Route::resource("clients", ClientController::class);
     Route::resource("purchases", PurchaseController::class);
