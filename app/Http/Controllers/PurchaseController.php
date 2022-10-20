@@ -45,7 +45,7 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("purchases.show");
     }
 
     /**

@@ -45,7 +45,7 @@ class WareHouseController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("warehouse.show");
     }
 
     /**
