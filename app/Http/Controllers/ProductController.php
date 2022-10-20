@@ -23,7 +23,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
         return view("products.create");
     }
 
@@ -35,7 +34,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //  app(StoreProductAction::class)->handle($inputs);
     }
 
     /**
