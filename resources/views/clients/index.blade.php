@@ -62,6 +62,7 @@ Clients | All Clients
                                 <td>222-42-10</td>
                                 <td>
                                     <div class="btn-icon-list">
+                                        <a href="{{ route("clients.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                         <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
                                         <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
                                     </div>

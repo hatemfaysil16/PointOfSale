@@ -65,7 +65,7 @@ Invoices | All Invoices
 
                                 <td>
                                     <div class="btn-icon-list">
-                                        <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -81,7 +81,7 @@ Invoices | All Invoices
                                 <td>223512424</td>
                                 <td>
                                     <div class="btn-icon-list">
-                                        <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -97,7 +97,7 @@ Invoices | All Invoices
                                 <td>223512424</td>
                                 <td>
                                     <div class="btn-icon-list">
-                                        <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -113,7 +113,7 @@ Invoices | All Invoices
                                 <td>223512424</td>
                                 <td>
                                     <div class="btn-icon-list">
-                                        <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>
