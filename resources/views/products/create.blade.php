@@ -68,17 +68,17 @@ add {{$type}} product
                         @include('layouts.component.form-input.input',['name'=>'BoxCostPrice','value'=>$Product->BoxCostPrice,'placeholder'=>"Box Cost Price"])
                     </div>
                     <div class="col-sm-12 col-md-4">
-                        @include('layouts.component.form-input.input',['name'=>'BoxPrice_shop','value'=>$Product->BoxPrice_shop,'placeholder'=>"BoxPrice_shop"])
+                        @include('layouts.component.form-input.input',['name'=>'BoxPrice_shop','value'=>$Product->BoxPrice_shop,'placeholder'=>"Box Price (shop)"])
                     </div>
                     <div class="col-sm-12 col-md-4">
-                        @include('layouts.component.form-input.input',['name'=>'BoxPrice_company','value'=>$Product->BoxPrice_company,'placeholder'=>"BoxPrice_company"])
+                        @include('layouts.component.form-input.input',['name'=>'BoxPrice_company','value'=>$Product->BoxPrice_company,'placeholder'=>"Box Price (Company)"])
                     </div>
                     
                 </div>
                 <h4 class="card-title mb-1">Origin Information</h4>
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-input.input',['name'=>'CountryOfOrigin','value'=>$Product->CountryOfOrigin,'placeholder'=>"CountryOfOrigin"])
+                        @include('layouts.component.form-input.input',['name'=>'CountryOfOrigin','value'=>$Product->CountryOfOrigin,'placeholder'=>"Country Of Origin"])
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <div class="form-group">

@@ -50,6 +50,7 @@ Products
                                 <td>{{$item->BoxPrice_company}}</td>
                                 <td>
                                     <div class="btn-icon-list">
+                                        <a href="{{ route("products.show",$item->id) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                         <a href="{{route('typesofweight.edit',$item->id)}}" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
                                         <button type="button" data-toggle="modal" data-target="#delete{{ $item->id }}" class="btn btn-danger btn-icon">
                                             <i class="fas fa-trash-alt"></i>
