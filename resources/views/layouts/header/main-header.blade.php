@@ -34,7 +34,7 @@
 										</div>
 									</div>
 									<a class="dropdown-item" href=""><i class="bx bx-cog"></i> Edit Profile</a>
-
+	
 									<form action="{{route('logout')}}" method="POST">
 										@csrf
 										@method('POST')
