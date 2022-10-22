@@ -27,7 +27,8 @@ add {{$type}} product
             <h4 class="card-title mb-1">Basic Information</h4>
         </div>
         <div class="card-body pt-0">
-            <form class="form-horizontal" >
+            <form action="{{ $action }}" method="post"  class="form-horizontal" >
+                @include('layouts.component.csrf_put.csrf_put')
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
                             @include('layouts.component.form-input.input',['name'=>'ProductName','value'=>$Product->ProductName,'placeholder'=>"Product Name"])
@@ -35,8 +36,7 @@ add {{$type}} product
                             @include('layouts.component.form-input.input',['name'=>'ProductBarcode','value'=>$Product->ProductBarcode,'placeholder'=>"Product Barcode"])
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <input type="file" id="product-image" class="dropify" data-height="200" accept=".jpg, .png, image/jpeg, image/png"/>
-                        {{--  <img style="cursor: pointer" width="300" height="300" src="{{ asset($model->getFirstMediaUrl($NameImage) )}}">  --}}
+                            @include('layouts.component.image.create')
                     </div>
                 </div>
                 <h4 class="card-title mb-1">Box Information</h4>
@@ -51,16 +51,7 @@ add {{$type}} product
                     <div class="col-lg-9 col-xl-9 col-md-9 col-sm-6">
                         @include('layouts.component.form-input.input',['name'=>'PackWeight','value'=>$Product->PackWeight,'placeholder'=>"Pack Weight"])
                     </div>
-                    <div class="col-lg-3 col-xl-3 col-md-3 col-sm-6">
-                        <div class="form-group">
-                            <select class="form-control select2-no-search">
-                                <option value="" disabled="">Select Product</option>
-                                @foreach ($Typesofweight as $NewItem)
-                                <option value="{{$NewItem->id}}">{{$NewItem->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+                    @include('layouts.component.form-select.select',['foreach'=>$Typesofweight])
                 </div>
                 <h4 class="card-title mb-1">Price Information</h4>
                 <div class="row">
