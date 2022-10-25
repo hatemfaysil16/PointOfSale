@@ -21,7 +21,7 @@ class productViewModel extends ViewModel
     {
         return is_null($this->Product->id)
             ? route('products.store')
-            : route('products.update', ['products' => $this->Product->id]);
+            : route('products.update',$this->Product->id);
     }
 
     public function method(): string

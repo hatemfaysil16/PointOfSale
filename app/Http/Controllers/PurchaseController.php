@@ -2,83 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Purchases\StorePurchasesRequest;
+use App\Models\Purchases;
+use App\ViewModels\Typesofweight\PurchasesViewModel;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index():View
     {
-        return view("purchases.index");
+        $Purchases = Purchases::Search();
+        return view("purchases.index",\compact('Purchases'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create():View
     {
-        return view("purchases.create");
+        return view("purchases.create",new PurchasesViewModel());;
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(StorePurchasesRequest $request)
     {
-        //
+    app(StorePurchasesAction::class)->handle($request->validated());
+    return \redirect()->route('clients.index')->with('add','Success clients data');     
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(Client $client):View
     {
-        return view("purchases.show");
+        return view("clients.create",new ClientViewModel($client));
+
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(StorePurchasesRequest $request,Client $client)
     {
-        //
+        app(UpdateClientAction::class)->handle($client,$request->validated());
+        return \redirect()->route('clients.index')->with('edit','Success edit data');  
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy(Client $client)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $client->delete();
+        return \redirect()->route('clients.index')->with('delete','Success delete data');  
     }
 }

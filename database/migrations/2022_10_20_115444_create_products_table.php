@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration
 
             $table->string('PackType');
             $table->string('PackWeight');
-            $table->foreignId('typesofweights_id')->constrained('typesofweights');
+            $table->foreignId('typesofweights_id')->cascadeOnUpdate()->cascadeOnDelete();
 
 
             $table->string('BoxCostPrice');

@@ -17,9 +17,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource("typesofweight", TypesofweightController::class)->except('show');
     Route::resource("products", ProductController::class)->except('show');
     
-    Route::resource("clients", ClientController::class);
     Route::resource("purchases", PurchaseController::class);
-    Route::resource("invoices",InvoiceController::class);
-    Route::resource("warehouse",WareHouseController::class);
+
+    
+    Route::resource("clients", ClientController::class)->except('show');
+    Route::resource("invoices",InvoiceController::class)->except('show');
+    Route::resource("warehouse",WareHouseController::class)->except('show');
 });
 require __DIR__.'/auth.php';

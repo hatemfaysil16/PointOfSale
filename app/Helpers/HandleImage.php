@@ -1,18 +1,18 @@
 <?php
+namespace App\helpers;
 
-namespace App\Libs;
 use App\Http\Requests;
 trait HandleImage
 {
 
-	public function CreateImage($request,$model,$nameImage){
-        if ($request->image) {
+	public function storeImage($data,$model,$nameImage){
+        if (!empty($data->image)) {
             $model->addMediaFromRequest('image')->toMediaCollection($nameImage);
         }
 	}
 
-	public function UpdateImage($request,$model,$nameImage){
-        if ($request->image) {
+	public function UpdateImage($data,$model,$nameImage){
+        if (!empty($data->image)) {
             $model->clearMediaCollection($nameImage);
             $model->addMediaFromRequest('image')->toMediaCollection($nameImage);
         }

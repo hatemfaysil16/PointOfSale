@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Product\StoreProductAction;
+use App\Actions\Product\UpdateProductAction;
+use App\helpers\HandleImage;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Models\Product;
 use App\Models\Typesofweight;
@@ -11,6 +14,8 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    use HandleImage;
+
     public function index():View
     {
         $Product = Product::Search();
@@ -22,7 +27,7 @@ class ProductController extends Controller
     }
     public function store(StoreProductRequest $request)
     {
-     app(StoreProductAction::class)->handle($request->all());
+    app(StoreProductAction::class)->handle($request->validated());
     return \redirect()->route('products.index')->with('add','Success create data');     
     }
 
@@ -30,9 +35,9 @@ class ProductController extends Controller
     {
         return view("products.create",new productViewModel($Product));
     }
-    public function update(StoreProductRequest $request, $id)
+    public function update(StoreProductRequest $request,Product $product)
     {
-        app(UpdateProductAction::class)->handle($request->all(),$id);
+        app(UpdateProductAction::class)->handle($product,$request->validated());
         return \redirect()->route('products.index')->with('edit','Success edit data');  
     }
     public function destroy(Product $Product)

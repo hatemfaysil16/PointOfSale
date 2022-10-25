@@ -2,83 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Clients\StoreClientAction;
+use App\Actions\Clients\UpdateClientAction;
+use App\Http\Requests\Client\StoreClientRequest;
+use App\Models\Client;
+use App\ViewModels\Client\ClientViewModel;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index():View
     {
-        return view("clients.index");
+        $Client = Client::Search();
+        return view("clients.index",\compact('Client'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create():View
     {
-        return view("clients.create");
+        return view("clients.create",new ClientViewModel());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(StoreClientRequest $request)
     {
-        //
+    app(StoreClientAction::class)->handle($request->validated());
+    return \redirect()->route('clients.index')->with('add','Success clients data');     
+    }
+    public function edit(Client $client):View
+    {
+        return view("clients.create",new ClientViewModel($client));
+    }
+    public function update(StoreClientRequest $request,Client $client)
+    {
+        app(UpdateClientAction::class)->handle($client,$request->validated());
+        return \redirect()->route('clients.index')->with('edit','Success edit data');  
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function destroy(Client $client)
     {
-        return view("clients.show");
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $client->delete();
+        return \redirect()->route('clients.index')->with('delete','Success delete data');  
     }
 }

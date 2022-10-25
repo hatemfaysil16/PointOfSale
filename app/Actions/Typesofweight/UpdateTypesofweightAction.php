@@ -1,11 +1,11 @@
 <?php
 namespace App\Actions\Typesofweight;
-
 use App\Models\Typesofweight;
 class UpdateTypesofweightAction
 {
-    public function handle(array $data,int $id):bool
+    public function handle(Typesofweight $typesofweight,array $data): Typesofweight
     {
-        return  Typesofweight::find($id)->update($data);
+          $typesofweight->update($data);
+          return $typesofweight;
     }
 }

@@ -19,6 +19,8 @@ add {{$type}} product
     
 @endsection
 @section('content')
+@include('layouts.MassageValidations.ErrorValidation')
+
 <!-- row -->
 <div class="row row-sm">
 <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
@@ -27,7 +29,7 @@ add {{$type}} product
             <h4 class="card-title mb-1">Basic Information</h4>
         </div>
         <div class="card-body pt-0">
-            <form action="{{ $action }}" method="post"  class="form-horizontal" >
+            <form action="{{ $action }}" method="post"  class="form-horizontal" enctype="multipart/form-data">
                 @include('layouts.component.csrf_put.csrf_put')
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
@@ -36,7 +38,7 @@ add {{$type}} product
                             @include('layouts.component.form-input.input',['name'=>'ProductBarcode','value'=>$Product->ProductBarcode,'placeholder'=>"Product Barcode"])
                     </div>
                     <div class="col-sm-12 col-md-6">
-                            @include('layouts.component.image.create')
+                            @include('layouts.component.image.create',['model'=>$Product,'name'=>'product'])
                     </div>
                 </div>
                 <h4 class="card-title mb-1">Box Information</h4>
@@ -51,7 +53,7 @@ add {{$type}} product
                     <div class="col-lg-9 col-xl-9 col-md-9 col-sm-6">
                         @include('layouts.component.form-input.input',['name'=>'PackWeight','value'=>$Product->PackWeight,'placeholder'=>"Pack Weight"])
                     </div>
-                    @include('layouts.component.form-select.select',['foreach'=>$Typesofweight])
+                    @include('layouts.component.form-select.select',['foreach'=>$Typesofweight,'name'=>'typesofweights_id','model'=>$Product,'nameselect'=>'product'])
                 </div>
                 <h4 class="card-title mb-1">Price Information</h4>
                 <div class="row">

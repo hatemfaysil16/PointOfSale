@@ -20,16 +20,16 @@ class TypesofweightController extends Controller
     }
     public function store(StoreTypesofweightRequest $request)
     {
-        app(StoreTypesofweightAction::class)->handle($request->all());
+        app(StoreTypesofweightAction::class)->handle($request->validated());
         return \redirect()->route('typesofweight.index')->with('add','Success create data');     
     }
     public function edit(Typesofweight $typesofweight):View
     {
         return view("typesofweight.create",new TypesofweightViewModel($typesofweight));
     }
-    public function update(StoreTypesofweightRequest $request, $id)
+    public function update(StoreTypesofweightRequest $request,Typesofweight $typesofweight)
     {
-        app(UpdateTypesofweightAction::class)->handle($request->all(),$id);
+        app(UpdateTypesofweightAction::class)->handle($typesofweight,$request->validated());
         return \redirect()->route('typesofweight.index')->with('edit','Success edit data');     
     }
     public function destroy(Typesofweight $typesofweight)
