@@ -13,7 +13,7 @@ class Purchases extends Model
 
     public function Product()
     {
-        return $this->belongsTo(Product::class,'Product_id');
+        return $this->belongsTo(Product::class,'products_id');
     }
    public function scopeSearch($query)
    {

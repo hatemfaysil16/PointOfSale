@@ -48,7 +48,7 @@ Clients | All Purchases
                             @foreach ($Purchases as $item)
                             <tr>
                                 <th scope="row">{{$i++}}</th>
-                                <td>{{!empty($item->Product_id)?$item->Product->name:''}}</td>
+                                <td>{{!empty($item->products_id)?$item->Product->name:''}}</td>
                                 <td>{{$item->date}}</td>
                                 <td>{{$item->quantity}}</td>
                                 <td>{{$item->PurchasePrice}}</td>
@@ -61,7 +61,7 @@ Clients | All Purchases
                                         <button type="button" data-toggle="modal" data-target="#delete{{ $item->id }}" class="btn btn-danger btn-icon">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
-                                        @include('layouts.modals.delete-modal', ['id' => $item->id, 'name' => !empty($item->Product_id)?$item->Product->name:'', 'route' => route('purchases.destroy', $item->id) ])
+                                        @include('layouts.modals.delete-modal', ['id' => $item->id, 'name' => !empty($item->products_id)?$item->Product->name:'', 'route' => route('purchases.destroy', $item->id) ])
                                     </div>
                                 </td>
                             </tr>

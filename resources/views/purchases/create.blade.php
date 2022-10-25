@@ -38,7 +38,7 @@ Purchases | Add New Purchase
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-select.select',['foreach'=>$Product,'name'=>'Product_id','model'=>$Purchases,'nameselect'=>'product'])
+                        @include('layouts.component.form-select.select',['foreach'=>$Product,'name'=>'products_id','model'=>$Purchases,'nameselect'=>'product'])
                         </div>
 
 

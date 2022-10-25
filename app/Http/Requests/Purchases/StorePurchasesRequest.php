@@ -25,7 +25,7 @@ class StorePurchasesRequest extends FormRequest
     {
         return [
             'date'=>['required'],
-            'Product_id'=>['required','exists:purchases,id'],
+            'products_id'=>['required','exists:purchases,id'],
             'quantity'=>['required','min:3','max:225'],
             'PurchasePrice'=>['required','min:3','max:225'],
             'ProductionDate'=>['required','min:3','max:225'],
