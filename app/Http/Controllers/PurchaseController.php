@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Purchases\StorePurchasesAction;
 use App\Http\Requests\Purchases\StorePurchasesRequest;
+use App\Models\Product;
 use App\Models\Purchases;
-use App\ViewModels\Typesofweight\PurchasesViewModel;
+use App\ViewModels\Purchases\PurchasesViewModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -15,29 +17,27 @@ class PurchaseController extends Controller
         $Purchases = Purchases::Search();
         return view("purchases.index",\compact('Purchases'));
     }
-
     public function create():View
     {
-        return view("purchases.create",new PurchasesViewModel());;
+        return view("purchases.create",new PurchasesViewModel());
     }
     public function store(StorePurchasesRequest $request)
     {
     app(StorePurchasesAction::class)->handle($request->validated());
-    return \redirect()->route('clients.index')->with('add','Success clients data');     
+    return \redirect()->route('purchases.index')->with('add','Success purchases data');     
     }
-    public function edit(Client $client):View
+    public function edit(Purchases $purchases):View
     {
-        return view("clients.create",new ClientViewModel($client));
-
+        return view("purchases.create",new PurchasesViewModel($purchases));
     }
-    public function update(StorePurchasesRequest $request,Client $client)
+    public function update(StorePurchasesRequest $request,Purchases $purchases)
     {
-        app(UpdateClientAction::class)->handle($client,$request->validated());
-        return \redirect()->route('clients.index')->with('edit','Success edit data');  
+        app(UpdatePurchasesAction::class)->handle($purchases,$request->validated());
+        return \redirect()->route('purchases.index')->with('edit','Success edit data');  
     }
-    public function destroy(Client $client)
+    public function destroy(Purchases $purchases)
     {
-        $client->delete();
-        return \redirect()->route('clients.index')->with('delete','Success delete data');  
+        $purchases->delete();
+        return \redirect()->route('purchases.index')->with('delete','Success delete data');  
     }
 }

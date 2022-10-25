@@ -33,7 +33,7 @@ add {{$type}} product
                 @include('layouts.component.csrf_put.csrf_put')
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
-                            @include('layouts.component.form-input.input',['name'=>'ProductName','value'=>$Product->ProductName,'placeholder'=>"Product Name"])
+                            @include('layouts.component.form-input.input',['name'=>'name','value'=>$Product->name,'placeholder'=>"Product Name"])
                             @include('layouts.component.form-input.input',['name'=>'ProductGroup','value'=>$Product->ProductGroup,'placeholder'=>"Product Group"])
                             @include('layouts.component.form-input.input',['name'=>'ProductBarcode','value'=>$Product->ProductBarcode,'placeholder'=>"Product Barcode"])
                     </div>

@@ -15,7 +15,8 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('ProductName');
+            $table->string('name');
+
             $table->string('ProductGroup');
             $table->string('ProductBarcode');
             
@@ -26,7 +27,8 @@ class CreateProductsTable extends Migration
 
             $table->string('PackType');
             $table->string('PackWeight');
-            $table->foreignId('typesofweights_id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('typesofweights_id')->references('id')->on('typesofweights')->cascadeOnUpdate()->cascadeOnDelete();
+
 
 
             $table->string('BoxCostPrice');

@@ -14,16 +14,7 @@ Clients | All Purchases
             <h4 class="content-title mb-0 my-auto">Purchases</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ All Purchases</span>
         </div>
     </div>
-    <form>
-        <div class="input-group">
-            <input class="form-control" placeholder="Search for..." type="text">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">
-                    <span class="input-group-btn"><i class="fa fa-search"></i></span>
-                </button>
-            </span>
-        </div>
-    </form>
+        @include('layouts.component.form-search.search',['route'=>route('purchases.index')])
 </div>
 <!-- breadcrumb -->
 
@@ -51,210 +42,30 @@ Clients | All Purchases
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach ($Purchases as $item)
                             <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
+                                <th scope="row">{{$i++}}</th>
+                                <td>{{!empty($item->Product_id)?$item->Product->name:''}}</td>
+                                <td>{{$item->date}}</td>
+                                <td>{{$item->quantity}}</td>
+                                <td>{{$item->PurchasePrice}}</td>
+                                <td>{{$item->ProductionDate}}</td>
+                                <td>{{$item->ExpiryDate}}</td>
+                                <td>{{$item->total}}</td>
                                 <td>
                                     <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
+                                        <a href="{{route('purchases.edit',$item->id)}}" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
+                                        <button type="button" data-toggle="modal" data-target="#delete{{ $item->id }}" class="btn btn-danger btn-icon">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        @include('layouts.modals.delete-modal', ['id' => $item->id, 'name' => !empty($item->Product_id)?$item->Product->name:'', 'route' => route('purchases.destroy', $item->id) ])
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>24/06/2022</td>
-                                <td>14442</td>
-                                <td>1000</td>
-                                <td>24/06/2022</td>
-                                <td>24/06/2022</td>
-                                <td>223512</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("purchases.show", 1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

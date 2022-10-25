@@ -19,6 +19,8 @@ Purchases | Add New Purchase
 @endsection
 
 @section('content')
+@include('layouts.MassageValidations.ErrorValidation')
+
 <!-- row -->
 <div class="row row-sm">
     <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
@@ -27,100 +29,46 @@ Purchases | Add New Purchase
                 <h4 class="card-title mb-1">Purchase Information</h4>
             </div>
             <div class="card-body pt-0">
-                <form class="form-horizontal" >
+                <form action="{{ $action }}" method="post"  class="form-horizontal">
+                @include('layouts.component.csrf_put.csrf_put')
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
-                                    </div>
-                                </div>
-                                <input class="form-control fc-datepicker" id="purchase-date" placeholder="MM/DD/YYYY" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <select class="form-control select2"  id="product-name-list" placeholder="Product Name">
-                                    <option label="Choose one">
-                                    </option>
-                                    <option value="Firefox">
-                                        Firefox
-                                    </option>
-                                    <option value="Chrome">
-                                        Chrome
-                                    </option>
-                                    <option value="Safari">
-                                        Safari
-                                    </option>
-                                    <option value="Opera">
-                                        Opera
-                                    </option>
-                                    <option value="Internet Explorer">
-                                        Internet Explorer
-                                    </option>
-                                </select>
-                            </div>
-                            
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="quantity" placeholder="Quantity">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="purchase-price" placeholder="Purchase Price">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
-                                        </div>
-                                    </div>
-                                    <input class="form-control fc-datepicker" id="production-date" placeholder="Production Date" type="text">
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
-                                        </div>
-                                    </div>
-                                    <input class="form-control fc-datepicker" id="expiry-date" placeholder="Expiry Date" type="text">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="quantity" placeholder="Warehouse Number">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="quantity" placeholder="Invoice Number">
-                            </div>
+                            {{$Purchases}}
+                        @include('layouts.component.form-date.input',['name'=>'date','value'=>$Purchases->date])
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="total" placeholder="Total" disabled>
-                            </div>
+                        @include('layouts.component.form-select.select',['foreach'=>$Product,'name'=>'Product_id','model'=>$Purchases,'nameselect'=>'product'])
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-input.input',['name'=>'quantity','value'=>$Purchases->quantity,'placeholder'=>"Quantity"])
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-input.input',['name'=>'PurchasePrice','value'=>$Purchases->PurchasePrice,'placeholder'=>"Purchase Price"])
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-date.input',['name'=>'ProductionDate','value'=>$Purchases->ProductionDate])
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-date.input',['name'=>'ExpiryDate','value'=>$Purchases->ExpiryDate])
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-input.input',['name'=>'WarehouseNumber','value'=>$Purchases->WarehouseNumber,'placeholder'=>"Warehouse Number"])
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-input.input',['name'=>'InvoiceNumber','value'=>$Purchases->InvoiceNumber,'placeholder'=>"Invoice Number"])
+                        </div>
+
+                        <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-input.input',['name'=>'total','value'=>$Purchases->total,'placeholder'=>"total" ,'disabled'=>''])
                         </div>
                     </div>
                     
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <div>
-                            <button type="submit" class="btn btn-primary">Add</button>
-                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                            @include('layouts.component.form-submit.submit')
                         </div>
                     </div>
                 </form>

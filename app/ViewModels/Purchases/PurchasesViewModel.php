@@ -1,27 +1,31 @@
 <?php
-namespace App\ViewModels\Typesofweight;
+namespace App\ViewModels\Purchases;
+
+use App\Models\Product;
+use App\Models\Purchases;
 use Spatie\ViewModels\ViewModel;
 
 class PurchasesViewModel extends ViewModel
 {
-    public  $typesofweight;
-    public  $type;
+    public  $Purchases;
+    public  $Product;
 
-    public function __construct($typesofweight = null)
+
+    public function __construct($Purchases = null)
     {
-        $this->type = is_null($typesofweight)?'Add':'Edit' ; 
-        $this->typesofweight = is_null($typesofweight) ? new Typesofweight(old()) : $typesofweight;
+        $this->Product = Product::get();
+        $this->Purchases = is_null($Purchases) ? new Purchases(old()) : $Purchases;
     }
 
     public function action(): string
     {
-        return is_null($this->typesofweight->id)
-            ? route('typesofweight.store')
-            : route('typesofweight.update', ['typesofweight' => $this->typesofweight->id]);
+        return is_null($this->Purchases->id)
+            ? route('purchases.store')
+            : route('purchases.update', ['purchases' => $this->Purchases->id]);
     }
 
     public function method(): string
     {
-        return is_null($this->typesofweight->id) ? 'POST' : 'PUT';
+        return is_null($this->Purchases->id) ? 'POST' : 'PUT';
     }
 }

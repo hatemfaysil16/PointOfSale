@@ -16,7 +16,9 @@ class CreatePurchasesTable extends Migration
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->string('ProductName');
+            $table->foreignId('Product_id')->references('id')->on('products')->cascadeOnUpdate()->cascadeOnDelete();
+
+            
             $table->string('quantity');
             $table->string('PurchasePrice');
             $table->date('ProductionDate');

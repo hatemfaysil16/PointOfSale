@@ -16,12 +16,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles',RoleController::class);
     Route::resource("typesofweight", TypesofweightController::class)->except('show');
     Route::resource("products", ProductController::class)->except('show');
-    
-    Route::resource("purchases", PurchaseController::class);
+    Route::resource("purchases", PurchaseController::class)->except('show');
 
     
-    Route::resource("clients", ClientController::class)->except('show');
-    Route::resource("invoices",InvoiceController::class)->except('show');
-    Route::resource("warehouse",WareHouseController::class)->except('show');
+    Route::resource("clients", ClientController::class);
+    Route::resource("invoices",InvoiceController::class);
+    Route::resource("warehouse",WareHouseController::class);
 });
 require __DIR__.'/auth.php';

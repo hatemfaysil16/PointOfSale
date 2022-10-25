@@ -25,8 +25,7 @@ class StoreProductRequest extends FormRequest
     {
         return [
             'image'=>['nullable','mimes:jpg,jpeg,png'],
-
-            'ProductName'=>['required','min:3','max:255'],
+            'name'=>['required','min:3','max:255'],
             'ProductGroup'=>['required','min:3','max:255'],
             'ProductBarcode'=>['required','min:3','max:255'],
 
@@ -48,6 +47,7 @@ class StoreProductRequest extends FormRequest
             
             'CountryOfOrigin'=>['required','min:3','max:255'],
             'Manufacturer'=>['required','min:3','max:255'],
+
 
         ];
     }
