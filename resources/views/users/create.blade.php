@@ -36,7 +36,6 @@ Add User
             </div>
 
             <div class="card-body pt-0">
-                <form class="parsley-style-1 form-horizontal" id="selectForm2" autocomplete="off" name="selectForm2" action="{{route('users.store','test')}}" method="post" enctype="multipart/form-data">
                 <form action="{{ $action }}" class="parsley-style-1 form-horizontal" id="selectForm2" autocomplete="off" name="selectForm2" method="post" enctype="multipart/form-data">
                 @include('layouts.component.csrf_put.csrf_put')
                     <div class="row">
@@ -56,10 +55,12 @@ Add User
                            @include('layouts.component.form-select-one.select-one',['foreach'=>(App\Models\Consts::ACTIVE),'name'=>'status','model'=>$user,'nameselect'=>'status'])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            @include('layouts.component.form-select-one.select-one',['foreach'=>$roles,'name'=>'roles_name[]','model'=>$user,'nameselect'=>'roles name'])
+                           @include('layouts.component.form-select-role.role')
+                        </div>
+
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            @include('layouts.component.image.create',['model'=>$user,'name'=>'image'])
+                            @include('layouts.component.image.create',['model'=>$user,'name'=>'profile'])
                         </div>
                     </div>
                     <div class="form-group mb-0 mt-3 justify-content-end">

@@ -3,8 +3,9 @@
 namespace App\Http\Requests\Users;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,13 +22,14 @@ class StoreUserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
+       $id= Request()->segment(2);
         return [
         'name' => 'required',
         'status' => 'nullable',
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|same:confirm-password',
+        'email' => 'required|email|unique:users,email,'.$id,
+        'password' => 'same:confirm-password',
         'roles' => 'required',
         'image'=>'mimes:jpg,jpeg,png',
         ];

@@ -12,7 +12,7 @@ class StoreUserAction
     {
         $user = User::create($data);
         $data['password'] = Hash::make($data['password']);
-        $user->assignRole($data['roles_name']);
+        $user->assignRole($data['roles']);
         $this->storeImage($data,$user,'profile');
         return $user;
     }

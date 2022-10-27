@@ -57,24 +57,25 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>
-                                        {{ $user->Status }}
-                                    </td>
-
+                                    <td>{{ $user->status }}</td>
                                     <td>
                                         @include('layouts.component.image.show',['model'=>$user,'NameUrl'=>'profile'])
                                     </td>
                                     <td>
-                                    
+                                        @if(!empty($user->getRoleNames()))
+                                            @foreach($user->getRoleNames() as $v)
+                                                <label class="badge badge-success">{{ $v }}</label>
+                                            @endforeach
+                                        @endif
                                     </td>
                                     <td>
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
-                                                title="edit"><i class="las la-pen"></i></a>
-
-                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                                data-toggle="modal" href="#modaldemo8" title="delete"><i
-                                                    class="las la-trash"></i></a>
+                                        <div class="btn-icon-list">
+                                            <a href="{{route('users.edit',$user->id)}}" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
+                                            <button type="button" data-toggle="modal" data-target="#delete{{ $user->id }}" class="btn btn-danger btn-icon">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                            @include('layouts.modals.delete-modal', ['id' => $user->id, 'name' => $user->name, 'route' => route('users.destroy', $user->id) ])
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -86,30 +87,6 @@
     </div>
     <!--/div-->
 
-    <!-- Modal effects -->
-    <div class="modal" id="modaldemo8">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                    <h6 class="modal-title">Delete User</h6><button aria-label="Close" class="close"
-                        data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <form action="{{ route('users.destroy', 'test') }}" method="post">
-                    {{ method_field('delete') }}
-                    {{ csrf_field() }}
-                    <div class="modal-body">
-                        <p>you are about to delete a user?</p><br>
-                        <input type="hidden" name="user_id" id="user_id" value="">
-                        <input class="form-control" name="username" id="username" type="text" readonly>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Confirm</button>
-                    </div>
-            </div>
-            </form>
-        </div>
-    </div>
 </div>
 
 </div>
@@ -138,17 +115,7 @@
 <!-- Internal Modal js-->
 <script src="{{ URL::asset('assets/js/modal.js') }}"></script>
 
-<script>
-    $('#modaldemo8').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget)
-        var user_id = button.data('user_id')
-        var username = button.data('username')
-        var modal = $(this)
-        modal.find('.modal-body #user_id').val(user_id);
-        modal.find('.modal-body #username').val(username);
-    })
 
-</script>
 
 
 @endsection
