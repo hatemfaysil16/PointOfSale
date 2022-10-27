@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Purchases\StorePurchasesAction;
+use App\Actions\Purchases\UpdatePurchasesAction;
 use App\Http\Requests\Purchases\StorePurchasesRequest;
 use App\Models\Product;
-use App\Models\Purchases;
+use App\Models\Purchase;
 use App\ViewModels\Purchases\PurchasesViewModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class PurchaseController extends Controller
 {
     public function index():View
     {
-        $Purchases = Purchases::Search();
+        $Purchases = Purchase::Search();
         return view("purchases.index",\compact('Purchases'));
     }
     public function create():View
@@ -26,18 +27,18 @@ class PurchaseController extends Controller
     app(StorePurchasesAction::class)->handle($request->validated());
     return \redirect()->route('purchases.index')->with('add','Success purchases data');     
     }
-    public function edit(Purchases $purchases):View
+    public function edit(Purchase $purchase)
     {
-        return view("purchases.create",new PurchasesViewModel($purchases));
+        return view("purchases.create",new PurchasesViewModel($purchase));
     }
-    public function update(StorePurchasesRequest $request,Purchases $purchases)
+    public function update(StorePurchasesRequest $request,Purchase $purchase)
     {
-        app(UpdatePurchasesAction::class)->handle($purchases,$request->validated());
+        app(UpdatePurchasesAction::class)->handle($purchase,$request->validated());
         return \redirect()->route('purchases.index')->with('edit','Success edit data');  
     }
-    public function destroy(Purchases $purchases)
+    public function destroy(Purchase $purchase)
     {
-        $purchases->delete();
+        $purchase->delete();
         return \redirect()->route('purchases.index')->with('delete','Success delete data');  
     }
 }

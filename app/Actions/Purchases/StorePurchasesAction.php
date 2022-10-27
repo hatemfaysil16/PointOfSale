@@ -1,14 +1,14 @@
 <?php
 namespace App\Actions\Purchases;
 
-use App\Models\Purchases;
+use App\Models\Purchase;
 
 
 class StorePurchasesAction
 {
-    public function handle(array $data): Purchases
+    public function handle(array $data): Purchase
     {
-        $Purchases = Purchases::create($data);
+        $Purchases = Purchase::create($data);
         return $Purchases;
     }
 }

@@ -27,9 +27,8 @@ class ProductController extends Controller
     }
     public function store(StoreProductRequest $request)
     {
-        dd('sd');
-    // app(StoreProductAction::class)->handle($request->validated());
-    // return \redirect()->route('products.index')->with('add','Success create data');     
+    app(StoreProductAction::class)->handle($request->validated());
+    return \redirect()->route('products.index')->with('add','Success create data');     
     }
 
     public function edit(Product $Product):View

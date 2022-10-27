@@ -24,8 +24,8 @@ class StorePurchasesRequest extends FormRequest
     public function rules()
     {
         return [
-            'date'=>['required'],
-            'products_id'=>['required','exists:purchases,id'],
+            'date'=>['required','date'],
+            'products_id'=>['required','exists:products,id'],
             'quantity'=>['required','min:3','max:225'],
             'PurchasePrice'=>['required','min:3','max:225'],
             'ProductionDate'=>['required','min:3','max:225'],

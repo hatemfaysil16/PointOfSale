@@ -24,9 +24,22 @@ class User extends Authenticatable implements  HasMedia
     protected $fillable = [
         'name',
         'email',
+        'status',
         'password',
     ];
 
+   public function scopeSearch($query)
+   {
+        $search = Request()->query('name');
+        if(empty($search)){
+        return $query->orderBy('id','DESC')->paginate(5);
+        }else{
+        return $query
+        ->orWhere('name', 'like' , "%{$search}%")
+        ->orWhere('email', 'like' , "%{$search}%")
+        ->orderBy('id','DESC')->paginate(5);
+        }
+   }
     /**
      * The attributes that should be hidden for serialization.
      *

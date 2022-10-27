@@ -25,17 +25,12 @@
                 </span>
         </div>
     </div>
+            @include('layouts.component.form-search.search',['route'=>route('users.index')])
 </div>
 <!-- breadcrumb -->
 @endsection
 
 @section('content')
-
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 
 <!-- row opened -->
 <div class="row row-sm">
@@ -43,7 +38,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive hoverable-table">
-                    <table class="table table-hover" id="example1" data-page-length='50' style=" text-align: center;">
+
+                    <table class="table table-hover mb-0 text-md-nowrap">
                         <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -72,17 +68,13 @@
                                     
                                     </td>
                                     <td>
-                                        @can('تعديل مستخدم')
                                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
-                                                title="تعديل"><i class="las la-pen"></i></a>
-                                        @endcan
+                                                title="edit"><i class="las la-pen"></i></a>
 
-                                        @can('حذف مستخدم')
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                 data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                                data-toggle="modal" href="#modaldemo8" title="حذف"><i
+                                                data-toggle="modal" href="#modaldemo8" title="delete"><i
                                                     class="las la-trash"></i></a>
-                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

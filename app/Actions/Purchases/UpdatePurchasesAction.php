@@ -1,13 +1,13 @@
 <?php
 namespace App\Actions\Purchases;
 
-use App\Models\Purchases;
+use App\Models\Purchase;
 
 class UpdatePurchasesAction
 {
-    public function handle(Purchases $purchases,array $data): Purchases
+    public function handle(Purchase $purchase,array $data): Purchase
     {
-          $purchases->update($data);
-          return $purchases;
+          $purchase->update($data);
+          return $purchase;
     }
 }

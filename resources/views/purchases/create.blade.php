@@ -33,36 +33,35 @@ Purchases | Add New Purchase
                 @include('layouts.component.csrf_put.csrf_put')
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                            {{$Purchases}}
-                        @include('layouts.component.form-date.input',['name'=>'date','value'=>$Purchases->date])
+                        @include('layouts.component.form-date.input',['name'=>'date','value'=>$purchase->date])
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-select.select',['foreach'=>$Product,'name'=>'products_id','model'=>$Purchases,'nameselect'=>'product'])
+                        @include('layouts.component.form-select.select',['foreach'=>$Product,'name'=>'products_id','model'=>$purchase,'nameselect'=>'product'])
                         </div>
 
 
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-input.input',['name'=>'quantity','value'=>$Purchases->quantity,'placeholder'=>"Quantity"])
+                        @include('layouts.component.form-input.input',['name'=>'quantity','value'=>$purchase->quantity,'placeholder'=>"Quantity"])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-input.input',['name'=>'PurchasePrice','value'=>$Purchases->PurchasePrice,'placeholder'=>"Purchase Price"])
+                        @include('layouts.component.form-input.input',['name'=>'PurchasePrice','value'=>$purchase->PurchasePrice,'placeholder'=>"Purchase Price"])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-date.input',['name'=>'ProductionDate','value'=>$Purchases->ProductionDate])
+                        @include('layouts.component.form-date.input',['name'=>'ProductionDate','value'=>$purchase->ProductionDate])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-date.input',['name'=>'ExpiryDate','value'=>$Purchases->ExpiryDate])
+                        @include('layouts.component.form-date.input',['name'=>'ExpiryDate','value'=>$purchase->ExpiryDate])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-input.input',['name'=>'WarehouseNumber','value'=>$Purchases->WarehouseNumber,'placeholder'=>"Warehouse Number"])
+                        @include('layouts.component.form-input.input',['name'=>'WarehouseNumber','value'=>$purchase->WarehouseNumber,'placeholder'=>"Warehouse Number"])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-input.input',['name'=>'InvoiceNumber','value'=>$Purchases->InvoiceNumber,'placeholder'=>"Invoice Number"])
+                        @include('layouts.component.form-input.input',['name'=>'InvoiceNumber','value'=>$purchase->InvoiceNumber,'placeholder'=>"Invoice Number"])
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-input.input',['name'=>'total','value'=>$Purchases->total,'placeholder'=>"total" ,'disabled'=>''])
+                        @include('layouts.component.form-input.input',['name'=>'total','value'=>$purchase->total,'placeholder'=>"total" ,'disabled'=>''])
                         </div>
                     </div>
                     

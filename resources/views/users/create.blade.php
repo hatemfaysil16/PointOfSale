@@ -22,25 +22,13 @@ Add User
 <!-- breadcrumb -->
 @endsection
 @section('content')
+@include('layouts.MassageValidations.ErrorValidation')
 <!-- row -->
 <div class="row">
 
 
     <div class="col-lg-12 col-md-12">
 
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>Error</strong>
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
 
         <div class="card">
             <div class="card-header">
@@ -49,52 +37,34 @@ Add User
 
             <div class="card-body pt-0">
                 <form class="parsley-style-1 form-horizontal" id="selectForm2" autocomplete="off" name="selectForm2" action="{{route('users.store','test')}}" method="post" enctype="multipart/form-data">
-                    {{csrf_field()}}
+                <form action="{{ $action }}" class="parsley-style-1 form-horizontal" id="selectForm2" autocomplete="off" name="selectForm2" method="post" enctype="multipart/form-data">
+                @include('layouts.component.csrf_put.csrf_put')
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="quantity" name="name" placeholder="User Name" required>
-                            </div>
+                        @include('layouts.component.form-input.input',['name'=>'name','value'=>$user->name,'placeholder'=>"User Name"])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input class="form-control" type="email" name="email" placeholder="E-mail" required>
-                            </div>
+                            @include('layouts.component.form-email.email',['name'=>'email','type'=>'email','value'=>$user->email,'placeholder'=>"E-mail"])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input class="form-control" type="password" name="password" placeholder="Password" required>
-                            </div>
+                            @include('layouts.component.form-password.password',['name'=>'password','type'=>'password','value'=>$user->password,'placeholder'=>"Password"])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input class="form-control" type="password" name="confirm-password" placeholder="Confirm Password" required>
-                            </div>
+                            @include('layouts.component.form-password.password',['name'=>'confirm-password','type'=>'password','value'=>$user->password,'placeholder'=>"Confirm Password"])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <select class="form-control" name="Status" id="user-status">
-                                    <option label="Status">Status</option>
-                                    <option value="active">Active</option>
-                                    <option value="disabled">Disabled</option>
-                                </select>
-                            </div>
+                           @include('layouts.component.form-select-one.select-one',['foreach'=>(App\Models\Consts::ACTIVE),'name'=>'status','model'=>$user,'nameselect'=>'status'])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control')) !!}
-                            </div>
+                            @include('layouts.component.form-select-one.select-one',['foreach'=>$roles,'name'=>'roles_name[]','model'=>$user,'nameselect'=>'roles name'])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group">
-                                <input type="file" name="image" class="dropify" data-height="300" accept=".jpg, .png, image/jpeg, image/png" />
-                            </div>                        
+                            @include('layouts.component.image.create',['model'=>$user,'name'=>'image'])
                         </div>
                     </div>
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <div>
-                            <button type="submit" class="btn btn-primary">Add</button>
-                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                            @include('layouts.component.form-submit.submit')
                         </div>
                     </div>
                 </form>
