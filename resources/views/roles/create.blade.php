@@ -74,9 +74,8 @@ User Roles | New Role
                         </ul>
                     </div>
                     <!-- /col -->
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-main-primary">Submit</button>
-                    </div>
+                            @include('layouts.component.form-submit.submit')
+
 
                 </div>
             </div>

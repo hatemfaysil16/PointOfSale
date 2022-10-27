@@ -57,7 +57,7 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->status }}</td>
+                                    <td><label class="badge badge-success">{{ $user->status }}</label></td>
                                     <td>
                                         @include('layouts.component.image.show',['model'=>$user,'NameUrl'=>'profile'])
                                     </td>
@@ -82,6 +82,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{$data->links()}}
             </div>
         </div>
     </div>

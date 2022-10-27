@@ -10,8 +10,8 @@ class StoreUserAction
     use HandleImage;
     public function handle(array $data): User
     {
-        $user = User::create($data);
         $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
         $user->assignRole($data['roles']);
         $this->storeImage($data,$user,'profile');
         return $user;

@@ -19,7 +19,7 @@ class UserController extends Controller
 {
     use HandleImage;
 
-    public function index(Request $request)
+    public function index(Request $request):View
     {
         $data = User::Search();
         return view('users.index',compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);

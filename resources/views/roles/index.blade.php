@@ -21,44 +21,6 @@ User Roles
 <!-- breadcrumb -->
 @endsection
 @section('content')
-
-
-@if (session()->has('Add'))
-    <script>
-        window.onload = function() {
-            notif({
-                msg: " تم اضافة الصلاحية بنجاح",
-                type: "success"
-            });
-        }
-
-    </script>
-@endif
-
-@if (session()->has('edit'))
-    <script>
-        window.onload = function() {
-            notif({
-                msg: " تم تحديث بيانات الصلاحية بنجاح",
-                type: "success"
-            });
-        }
-
-    </script>
-@endif
-
-@if (session()->has('delete'))
-    <script>
-        window.onload = function() {
-            notif({
-                msg: " تم حذف الصلاحية بنجاح",
-                type: "error"
-            });
-        }
-
-    </script>
-@endif
-
 <!-- row -->
 <div class="row row-sm">
     <div class="col-xl-12">
@@ -67,9 +29,7 @@ User Roles
                 <div class="d-flex justify-content-between">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-right">
-                            @can('اضافة صلاحية')
                                 <a class="btn btn-primary btn-sm" href="{{ route('roles.create') }}">Add</a>
-                            @endcan
                         </div>
                     </div>
                     <br>
@@ -92,24 +52,18 @@ User Roles
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td>
-                                        @can('عرض صلاحية')
                                             <a class="btn btn-success btn-sm"
                                                 href="{{ route('roles.show', $role->id) }}">Show</a>
-                                        @endcan
                                         
-                                        @can('تعديل صلاحية')
                                             <a class="btn btn-primary btn-sm"
                                                 href="{{ route('roles.edit', $role->id) }}">Edit</a>
-                                        @endcan
 
-                                        @if ($role->name !== 'owner')
-                                            @can('حذف صلاحية')
-                                                {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy',
-                                                $role->id], 'style' => 'display:inline']) !!}
-                                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                                                {!! Form::close() !!}
-                                            @endcan
-                                        @endif
+                         
+                                        <button type="button" data-toggle="modal" data-target="#delete{{ $role->id }}" class="btn btn-danger btn-icon">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        @include('layouts.modals.delete-modal', ['id' => $role->id, 'name' => $role->name, 'route' => route('roles.destroy', $role->id) ])
+               
 
 
                                     </td>

@@ -12,21 +12,15 @@ class UpdateUserAction
     use HandleImage;
     public function handle(User $user,array $data): User
     {
-        $user->update(Arr::except($data, 'image'));
-        if(!empty($input['password'])){
-        $data['password'] = Hash::make($data['password']);
+        if(!empty($data['password'])){
+            $data['password'] = Hash::make($data['password']);
+            $user->update(Arr::except($data, 'image'));
         }else{
-        // $input = array_except($data,array('password'));
+            $user->update(Arr::except($data, 'password','image'));
         }
-        $user->update($data);
         DB::table('model_has_roles')->where('model_id',$user->id)->delete();
         $user->assignRole($data['roles']);
         $this->UpdateImage($data,$user,'profile');
         return $user;
     }
 }
-
-        
-//    $user->update(Arr::except($data, 'image'));
-//     $this->UpdateImage($data,$user,'product');
-//     return $user;
