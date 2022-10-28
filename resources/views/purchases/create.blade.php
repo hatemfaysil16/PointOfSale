@@ -33,12 +33,34 @@ Purchases | Add New Purchase
                 @include('layouts.component.csrf_put.csrf_put')
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-date.input',['name'=>'date','value'=>$purchase->date])
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                                    </div>
+                                </div>
+                                <input class="form-control fc-datepicker"  name="date" value="{{$purchase->date}}" id="purchase-date" placeholder="Purchase Date" type="text">
+                            </div>
+                        {{-- @include('layouts.component.form-date.input',['name'=>'date','value'=>$purchase->date]) --}}
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-select.select',['foreach'=>$Product,'name'=>'products_id','model'=>$purchase,'nameselect'=>'product'])
+                            <div class="form-group">
+                                <select class="form-control select2"  id="product-name-list" placeholder="Product Name" name="products_id">
+                                    <option label="Choose Product">
+                                    </option>
+                                    @foreach ($Product as $item)
+                                    <option value="{{$item->id}}" >{{$item->name}}</option>               
+                                    @endforeach
+                                </select>
+                            </div>
+                            
                         </div>
+
+
+                        {{-- <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-select.select',['foreach'=>$Product,'name'=>'products_id','model'=>$purchase,'nameselect'=>'product'])
+                        </div> --}}
 
 
                         <div class="col-sm-12 col-md-6">
@@ -48,10 +70,35 @@ Purchases | Add New Purchase
                         @include('layouts.component.form-input.input',['name'=>'PurchasePrice','value'=>$purchase->PurchasePrice,'placeholder'=>"Purchase Price"])
                         </div>
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-date.input',['name'=>'ProductionDate','value'=>$purchase->ProductionDate])
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                                        </div>
+                                    </div>
+                                    <input class="form-control fc-datepicker" id="production-date" placeholder="Production Date" type="text" name="ProductionDate" value="{{ $purchase->ProductionDate }}">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+
+                        {{-- <div class="col-sm-12 col-md-6">
+                        @include('layouts.component.form-date.input',['name'=>'ProductionDate','value'=>$purchase->ProductionDate])
+                        </div> --}}
+                        {{-- <div class="col-sm-12 col-md-6">
                         @include('layouts.component.form-date.input',['name'=>'ExpiryDate','value'=>$purchase->ExpiryDate])
+                        </div> --}}
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                                        </div>
+                                    </div>
+                                    <input class="form-control fc-datepicker" id="expiry-date" placeholder="Expiry Date" type="text" name="ExpiryDate" value="{{ $purchase->ExpiryDate }}">
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                         @include('layouts.component.form-input.input',['name'=>'WarehouseNumber','value'=>$purchase->WarehouseNumber,'placeholder'=>"Warehouse Number"])
@@ -61,7 +108,7 @@ Purchases | Add New Purchase
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-input.input',['name'=>'total','value'=>$purchase->total,'placeholder'=>"total" ,'disabled'=>''])
+                        @include('layouts.component.form-input.input',['name'=>'total','value'=>$purchase->total,'placeholder'=>"total" ,'disabled'=>'disabled'])
                         </div>
                     </div>
                     
@@ -87,16 +134,33 @@ Purchases | Add New Purchase
 $(function() {
 	'use strict'
 	
-	// Datepicker
-	$('.fc-datepicker').datepicker({
-		showOtherMonths: true,
-		selectOtherMonths: true
-	});
+	
     $(document).ready(function() {
 		$('.select2').select2({
 			placeholder: 'Product Name',
 		});
-		
+		// Datepicker
+	$('.fc-datepicker#purchase-date').datepicker({
+		showOtherMonths: true,
+		selectOtherMonths: true,
+        dateFormat: 'yy-mm-dd'
+	});
+    $('.fc-datepicker#production-date').datepicker({
+		showOtherMonths: true,
+		selectOtherMonths: true,
+        dateFormat: 'yy-mm-dd' 
+	});
+    $('.fc-datepicker#expiry-date').datepicker({
+		showOtherMonths: true,
+		selectOtherMonths: true,
+        dateFormat: 'yy-mm-dd' 
+	});
+    $('input[name="quantity"]').on('keyup',function(){
+        $('input[name="total"]').val($('input[name="quantity"]').val() * $('input[name="PurchasePrice"]').val());
+    });
+    $('input[name="PurchasePrice"]').on('keyup',function(){
+        $('input[name="total"]').val($('input[name="quantity"]').val() * $('input[name="PurchasePrice"]').val());
+    });
 	});
 });
 </script>

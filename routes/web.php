@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/',[DashboardController::class,'index'])->name('/');
-    Route::resource('users',UserController::class)->except('show');
+    Route::resource('users',UserController::class);
     Route::resource('roles',RoleController::class);
     Route::resource("typesofweight", TypesofweightController::class)->except('show');
-    Route::resource("products", ProductController::class)->except('show');
-    Route::resource("purchases", PurchaseController::class)->except('show');
+    Route::resource("products", ProductController::class);
+    Route::resource("purchases", PurchaseController::class);
 
     
     Route::resource("clients", ClientController::class);

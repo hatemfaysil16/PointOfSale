@@ -18,7 +18,9 @@ class ClientController extends Controller
         $Client = Client::Search();
         return view("clients.index",\compact('Client'));
     }
-
+    public function show(Client $client){
+        return view("clients.show", new ClientViewModel($client));
+    }
     public function create():View
     {
         return view("clients.create",new ClientViewModel());

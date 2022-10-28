@@ -18,6 +18,9 @@ class PurchaseController extends Controller
         $Purchases = Purchase::Search();
         return view("purchases.index",\compact('Purchases'));
     }
+    public function show(Purchase $purchase){
+        return view("purchases.show", new PurchasesViewModel($purchase));
+    }
     public function create():View
     {
         return view("purchases.create",new PurchasesViewModel());

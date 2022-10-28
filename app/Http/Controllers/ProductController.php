@@ -21,6 +21,10 @@ class ProductController extends Controller
         $Product = Product::Search();
         return view("products.index",\compact('Product'));
     }
+    public function show(Product $Product){
+
+        return view("products.show", new productViewModel($Product));
+    }
     public function create():View
     {
         return view("products.create",new productViewModel());

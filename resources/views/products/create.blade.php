@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-add {{$type}} product
+{{$type}} product
 @stop
 @section("css")
 <link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
