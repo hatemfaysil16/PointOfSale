@@ -27,8 +27,8 @@ class PurchaseController extends Controller
     }
     public function store(StorePurchasesRequest $request)
     {
-    app(StorePurchasesAction::class)->handle($request->validated());
-    return \redirect()->route('purchases.index')->with('add','Success purchases data');     
+        app(StorePurchasesAction::class)->handle($request->validated());
+        return \redirect()->route('purchases.index')->with('add','Success purchases data');     
     }
     public function edit(Purchase $purchase)
     {

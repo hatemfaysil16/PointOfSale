@@ -47,20 +47,24 @@ Purchases | Add New Purchase
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <select class="form-control select2"  id="product-name-list" placeholder="Product Name" name="products_id">
-                                    <option label="Choose Product">
-                                    </option>
+                                    <option label="Choose Product"></option>
                                     @foreach ($Product as $item)
-                                    <option value="{{$item->id}}" >{{$item->name}}</option>               
+                                        @if (isset($purchase->id))
+                                        {{--  edit  --}}
+                                        <option value="{{$item->id}}" {{ $item->id == $purchase->products_id ?'selected':''}}>{{$item->name}}</option>
+                                        @else
+                                        {{--  create  --}}
+                                        <option value="{{$item->id}}" @if (old('products_id')==$item->id) {{ 'selected' }} @endif >{{$item->name}}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
                             
                         </div>
 
-
-                        {{-- <div class="col-sm-12 col-md-6">
+                        {{--  <div class="col-sm-12 col-md-6">
                         @include('layouts.component.form-select.select',['foreach'=>$Product,'name'=>'products_id','model'=>$purchase,'nameselect'=>'product'])
-                        </div> --}}
+                        </div>  --}}
 
 
                         <div class="col-sm-12 col-md-6">
@@ -108,7 +112,11 @@ Purchases | Add New Purchase
                         </div>
 
                         <div class="col-sm-12 col-md-6">
-                        @include('layouts.component.form-input.input',['name'=>'total','value'=>$purchase->total,'placeholder'=>"total" ,'disabled'=>'disabled'])
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="total_name" name="total_name" value="{{$purchase->total}}" id="product-name" placeholder="total" disabled>
+                                <input type="hidden" class="form-control" name="total" value="{{$purchase->total}}" id="product-name" placeholder="total" >
+                            </div>
+                        {{--  @include('layouts.component.form-input.input',['name'=>'total','value'=>$purchase->total,'placeholder'=>"total" ,'disabled'=>''])  --}}
                         </div>
                     </div>
                     
@@ -156,9 +164,10 @@ $(function() {
         dateFormat: 'yy-mm-dd' 
 	});
     $('input[name="quantity"]').on('keyup',function(){
-        $('input[name="total"]').val($('input[name="quantity"]').val() * $('input[name="PurchasePrice"]').val());
+        $('input[name="total_name"]').val($('input[name="quantity"]').val() * $('input[name="PurchasePrice"]').val());
     });
     $('input[name="PurchasePrice"]').on('keyup',function(){
+        $('input[name="total_name"]').val($('input[name="quantity"]').val() * $('input[name="PurchasePrice"]').val());
         $('input[name="total"]').val($('input[name="quantity"]').val() * $('input[name="PurchasePrice"]').val());
     });
 	});
