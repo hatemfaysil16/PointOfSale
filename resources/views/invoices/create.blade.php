@@ -28,6 +28,8 @@ Invoices | Add New Invoice
             </div>
             <div class="card-body pt-0">
                 <form class="form-horizontal" >
+
+
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
@@ -57,7 +59,10 @@ Invoices | Add New Invoice
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <select class="form-control select2"  id="customer-name-list" placeholder="Invoice to">
+                                <div class="col-sm-12 col-md-6">
+                                @include('layouts.component.form-select-one.select-one',['foreach'=>(App\Models\Consts::INVOICETYPE),'name'=>'invoicetype','model'=>'','nameselect'=>'invoicetype'])
+                                </div>
+                                {{--  <select class="form-control select2"  id="customer-name-list" placeholder="Invoice to">
                                     <option label="Choose one">
                                     </option>
                                     <option value="Firefox">
@@ -75,7 +80,7 @@ Invoices | Add New Invoice
                                     <option value="Internet Explorer">
                                         Internet Explorer
                                     </option>
-                                </select>
+                                </select>  --}}
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -229,6 +234,8 @@ Invoices | Add New Invoice
                         </div>
 
                     </div>
+
+
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <div>
                             <button type="button" class="btn btn-primary">Add</button>

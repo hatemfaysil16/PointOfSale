@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Consts extends Model
+class Invoice extends Model
 {
     use HasFactory;
-
-    Const ACTIVE=['active','NoActive'];
-    Const INVOICETYPE=['company','shop'];
+    protected $guarded = [];
 
 }
-
