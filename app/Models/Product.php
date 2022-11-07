@@ -13,6 +13,7 @@ class Product extends Model implements  HasMedia
 
 
 
+
     public function Typesofweight()
     {
         return $this->belongsTo(Typesofweight::class,'typesofweights_id');

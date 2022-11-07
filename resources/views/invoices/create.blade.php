@@ -19,6 +19,8 @@ Invoices | Add New Invoice
 @endsection
 
 @section('content')
+@include('layouts.MassageValidations.ErrorValidation')
+
 <!-- row -->
 <div class="row row-sm">
     <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
@@ -27,21 +29,23 @@ Invoices | Add New Invoice
                 <h4 class="card-title mb-1">Invoice Information</h4>
             </div>
             <div class="card-body pt-0">
-                <form class="form-horizontal" >
-
+                <form action="{{ $action }}" method="post" class="form-horizontal">
+                    @include('layouts.component.csrf_put.csrf_put')
 
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <select class="form-control select2-no-search">
-                                    <option label="Invoice type">
-                                    </option>
-                                    <option value="company">
-                                        Company
-                                    </option>
-                                    <option value="shop">
-                                        Shop
-                                    </option>
+                                <select class="form-control select2-no-search" value=""  name="invoicetype">
+                                    <option value="" disabled="">Select invoicetype</option>
+                                    @foreach (App\Models\Consts::INVOICETYPE as $item)
+                                    @if (isset($Invoice))
+                                    {{--  edit  --}}
+                                    <option value="{{$item}}" {{ $item == $Invoice->invoicetype ?'selected':''}}>{{$item}}</option>
+                                    @else
+                                    {{--  create  --}}
+                                    <option value="{{$item}}" @if (old('invoicetype')==$item) {{ 'selected' }} @endif >{{$item}}</option>
+                                    @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -52,7 +56,7 @@ Invoices | Add New Invoice
                                         <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                     </div>
                                 </div>
-                                <input class="form-control fc-datepicker" id="invoice-date" placeholder="MM/DD/YYYY" type="text">
+                                <input class="form-control fc-datepicker" id="production-date" placeholder="MM/DD/YYYY" type="date" name="date" value="{{ $Invoice->date }}">
                             </div>
                             
                             
@@ -60,32 +64,25 @@ Invoices | Add New Invoice
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6">
-                                @include('layouts.component.form-select-one.select-one',['foreach'=>(App\Models\Consts::INVOICETYPE),'name'=>'invoicetype','model'=>'','nameselect'=>'invoicetype'])
                                 </div>
-                                {{--  <select class="form-control select2"  id="customer-name-list" placeholder="Invoice to">
-                                    <option label="Choose one">
-                                    </option>
-                                    <option value="Firefox">
-                                        Firefox
-                                    </option>
-                                    <option value="Chrome">
-                                        Chrome
-                                    </option>
-                                    <option value="Safari">
-                                        Safari
-                                    </option>
-                                    <option value="Opera">
-                                        Opera
-                                    </option>
-                                    <option value="Internet Explorer">
-                                        Internet Explorer
-                                    </option>
-                                </select>  --}}
+                                <select class="form-control"  id="clients_id" placeholder="Client Name" name="clients_id">
+                                    <option label="Choose Client"></option>
+                                    @foreach ($client as $item)
+                                        @if (isset($client->id))
+                                        {{--  edit  --}}
+                                        <option value="{{$item->id}}" {{ $item->id == $client->clients_id ?'selected':''}}>{{$item->name}}</option>
+                                        @else
+                                        {{--  create  --}}
+                                        <option value="{{$item->id}}" @if (old('clients_id')==$item->id) {{ 'selected' }} @endif >{{$item->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group mt-2">
-                                <label class="ckbox"><input type="checkbox"><span>Same Address?</span></label>
+                                <label class="ckbox"><input type="checkbox" class="checked" id="checkbox" name="checkbox[]" onchange='act(this)' checked ><span>Same Address?</span></label>
+
                             </div>
                         </div>
                         <div class="col-12">
@@ -96,39 +93,39 @@ Invoices | Add New Invoice
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                                        <input type="text" class="form-control customerName" name="name_edit"  id="customerName" placeholder="Customer Name" disabled>
                                     </div>                            
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="companyName" placeholder="Company Name">
+                                            <input type="text" class="form-control" id="companyName" name="companyName_edit" placeholder="Company Name" disabled>
                                         </div>                            
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="streetAddress" placeholder="Street Address">
+                                        <input type="text" class="form-control" id="streetAddress" name="street_edit" placeholder="Street Address" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="city" placeholder="City">
+                                        <input type="text" class="form-control" id="city" name="companyCity_edit" placeholder="City" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="state" placeholder="State">
+                                        <input type="text" class="form-control" id="state" name="CompanyState_edit" placeholder="State" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="zipCode" placeholder="Zip Code">
+                                        <input type="text" class="form-control" id="zipCode" name="PostalCode_edit" placeholder="Zip Code" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                        <input type="text" class="form-control" id="phone" name="phone_edit" placeholder="Phone" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -139,39 +136,39 @@ Invoices | Add New Invoice
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                                        <input type="text" class="form-control" value="{{old('name')}}" name="name" id="customerName2" placeholder="Customer Name" >
                                     </div>                            
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="companyName" placeholder="Company Name">
+                                            <input type="text" class="form-control" value="{{old('companyName')}}"  name="companyName" id="companyName2" placeholder="Company Name">
                                         </div>                            
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="streetAddress" placeholder="Street Address">
+                                        <input type="text" class="form-control" value="{{old('street')}}" name="street" id="streetAddress2" placeholder="Street Address">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="city" placeholder="City">
+                                        <input type="text" class="form-control" value="{{old('companyCity')}}" name="companyCity" id="city2" placeholder="City">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="state" placeholder="State">
+                                        <input type="text" class="form-control" value="{{old('CompanyState')}}" name="CompanyState" id="state2" placeholder="State">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="zipCode" placeholder="Zip Code">
+                                        <input type="text" class="form-control" value="{{old('PostalCode')}}" name="PostalCode" id="zipCode2" placeholder="Zip Code">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="phone" placeholder="Phone">
+                                        <input type="text" class="form-control" value="{{old('phone')}}" name="phone" id="phone2" placeholder="Phone">
                                     </div>
                                 </div>
                             </div>                        </div>
@@ -181,31 +178,36 @@ Invoices | Add New Invoice
                             <h4 class="card-title mb-1">Product Information</h4>
                         </div>
                         <div class="col-sm-12 col-md-6">
+                            <input type="hidden" id="url" value="{{asset('')}}">
                             <div class="form-group">
-                                <select class="form-control select2"  id="product-name-list" placeholder="Product Name">
-                                    <option label="Choose one">
-                                    </option>
-                                    <option value="Firefox">
-                                        Firefox
-                                    </option>
-                                    <option value="Chrome">
-                                        Chrome
-                                    </option>
-                                    <option value="Safari">
-                                        Safari
-                                    </option>
-                                    <option value="Opera">
-                                        Opera
-                                    </option>
-                                    <option value="Internet Explorer">
-                                        Internet Explorer
-                                    </option>
+                                <select class="form-control"  id="products_id" placeholder="Product Name" name="products_id">
+                                    <option label="Choose Product" disabled></option>
+                                    @foreach ($product as $itemNew)
+                                        @if (isset($product->id))
+                                        {{--  edit  --}}
+                                        <option value="{{$itemNew->id}}" {{ $itemNew->id == $product->products_id ?'selected':''}}>{{$itemNew->name}}</option>
+                                        @else
+                                        {{--  create  --}}
+                                        <option value="{{$itemNew->id}}" @if (old('products_id')==$itemNew->id) {{ 'selected' }} @endif >{{$itemNew->name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="parcode" placeholder="Parcode">
+                                <select class="form-control"  id="productBarcode" placeholder="Product Name" name="ProductBarcode">
+                                    <option label="Choose Product"></option>
+                                    @foreach ($product as $item)
+                                        @if (isset($product->id))
+                                        {{--  edit  --}}
+                                        <option value="{{$item->id}}" {{ $item->id == $product->products_id ?'selected':''}}>{{$item->ProductBarcode}}</option>
+                                        @else
+                                        {{--  create  --}}
+                                        <option value="{{$item->id}}" @if (old('products_id')==$item->id) {{ 'selected' }} @endif >{{$item->ProductBarcode}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4">
@@ -229,7 +231,7 @@ Invoices | Add New Invoice
                         </div>
                         <div class="col-sm-12 col-md-4">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="quantity" placeholder="Quantity">
+                                <input type="number" class="form-control" name="qty" value="{{$Invoice->qty}}" id="product-name" placeholder="Quantity" >
                             </div>
                         </div>
 
@@ -238,9 +240,11 @@ Invoices | Add New Invoice
 
                     <div class="form-group mb-0 mt-3 justify-content-end">
                         <div>
-                            <button type="button" class="btn btn-primary">Add</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
                         </div>
                     </div>
+                </form>
+
                     <hr />
                     <div class="table-responsive mt-5">
                         <table class="table table-hover mb-0 text-md-nowrap">
@@ -256,86 +260,28 @@ Invoices | Add New Invoice
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $i=1;
+                                @endphp
+                                @foreach ($DataInvoices as $DataInvoice)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Tiger Nixon</td>
-                                    <td>15302</td>
-                                    <td>144423213</td>
-                                    <td>1000</td>
-                                    <td>22351223133232</td>
+                                    <th scope="row">{{$i++}}</th>
+                                    <td>{{$DataInvoice->Product->name}}</td>
+                                    <td>{{$DataInvoice->Product->BoxCostPrice}}</td>
+                                    <td>{{$DataInvoice->Product->PacksPerBox}}</td>
+                                    <td>{{$DataInvoice->qty}}</td>
+                                    <td>{{$DataInvoice->Total}}</td>
                                     <td>
-                                        <div class="btn-icon-list">
-                                            <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
+                                        <button type="button" data-toggle="modal" data-target="#delete{{ $DataInvoice->id }}" class="btn btn-danger btn-icon">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        @include('layouts.modals.delete-modal', ['id' => $DataInvoice->id, 'name' => '', 'route' => route('invoices.destroy', $DataInvoice->id) ])
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Tiger Nixon</td>
-                                    <td>15302</td>
-                                    <td>144423213</td>
-                                    <td>1000</td>
-                                    <td>22351223133232</td>
-                                    <td>
-                                        <div class="btn-icon-list">
-                                            <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Tiger Nixon</td>
-                                    <td>15302</td>
-                                    <td>144423213</td>
-                                    <td>1000</td>
-                                    <td>22351223133232</td>
-                                    <td>
-                                        <div class="btn-icon-list">
-                                            <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Tiger Nixon</td>
-                                    <td>15302</td>
-                                    <td>144423213</td>
-                                    <td>1000</td>
-                                    <td>22351223133232</td>
-                                    <td>
-                                        <div class="btn-icon-list">
-                                            <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Tiger Nixon</td>
-                                    <td>15302</td>
-                                    <td>144423213</td>
-                                    <td>1000</td>
-                                    <td>22351223133232</td>
-                                    <td>
-                                        <div class="btn-icon-list">
-                                            <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Tiger Nixon</td>
-                                    <td>15302</td>
-                                    <td>144423213</td>
-                                    <td>1000</td>
-                                    <td>22351223133232</td>
-                                    <td>
-                                        <div class="btn-icon-list">
-                                            <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        {{$DataInvoices->links()}}
                     </div>
                     <div class="row mt-5">
                         <div class="col-sm-12 col-md-4">
@@ -436,7 +382,6 @@ Invoices | Add New Invoice
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div> 
@@ -448,6 +393,8 @@ Invoices | Add New Invoice
 @section('js')
 <script src="{{URL::asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+<script src="{{asset('js/invoices/invoices.js')}}"></script>
+<script src="{{asset('js/client/client.js')}}"></script>
 <script>
 
 $(function() {
@@ -466,7 +413,13 @@ $(function() {
         $('#product-name-list').select2({
 			placeholder: 'Product Name',
 		});
+
+
+
 	});
 });
+
+    
+
 </script>
 @endsection

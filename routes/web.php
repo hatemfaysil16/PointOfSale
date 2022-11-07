@@ -11,7 +11,6 @@ use App\Http\Controllers\WareHouseController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['auth']], function () {
-
     Route::get('/',[DashboardController::class,'index'])->name('/');
     Route::resource('users',UserController::class);
     Route::resource('roles',RoleController::class);
@@ -22,6 +21,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::resource("clients", ClientController::class);
     Route::resource("invoices",InvoiceController::class);
+    Route::get("invoices/ajaxProducts/{product}",[InvoiceController::class,'ajaxProducts']);
+    Route::get("invoices/ajaxClient/{client}",[InvoiceController::class,'ajaxClient']);
     Route::resource("warehouse",WareHouseController::class);
 });
 require __DIR__.'/auth.php';
