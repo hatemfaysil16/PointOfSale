@@ -32,22 +32,15 @@ class InvoicesRequest extends FormRequest
             'qty'=>['required'],
             // --------------------------------------
             // client::create
-            'name'=>['required','unique:clients,name','min:2','max:225'],
-            'street'=>['required','min:2','max:225'],
-            'CompanyState'=>['required','min:2','max:225'],
-            'phone'=>['required','unique:clients,phone','min:2','max:15'],
-            'companyName'=>['required','unique:clients,companyName','min:2','max:225'],
-            'companyCity'=>['required','unique:clients,companyCity','min:2','max:225'],
-            'PostalCode'=>['required','min:2','max:225'],
+            'name'=>['nullable','unique:clients,name','min:2','max:225'],
+            'street'=>['nullable','min:2','max:225'],
+            'CompanyState'=>['nullable','min:2','max:225'],
+            'phone'=>['nullable','unique:clients,phone','min:2','max:15'],
+            'companyName'=>['nullable','unique:clients,companyName','min:2','max:225'],
+            'companyCity'=>['nullable','unique:clients,companyCity','min:2','max:225'],
+            'PostalCode'=>['nullable','min:2','max:225'],
             // --------------------------------------
-            // client::create
-            // 'name_edit'=>['nullable','min:2','max:225'],
-            // 'street_edit'=>['nullable','min:2','max:225'],
-            // 'CompanyState_edit'=>['nullable','min:2','max:225'],
-            // 'phone_edit'=>['nullable','min:2','max:15'],
-            // 'companyName_edit'=>['nullable','min:2','max:225'],
-            // 'companyCity_edit'=>['nullable','min:2','max:225'],
-            // 'PostalCode_edit'=>['nullable','min:2','max:225'],
+
         ];
     }
 }

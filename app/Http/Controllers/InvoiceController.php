@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Invoice\StoreInvoiceAction;
 use App\Http\Requests\Invoices\InvoicesRequest;
 use App\Models\Client;
 use App\Models\Invoice;
@@ -48,6 +49,36 @@ class InvoiceController extends Controller
      */
     public function store(InvoicesRequest $request)
     {
+        if($request->checkbox == ['on']){
+        }else{
+          $Client = Client::find($request->clients_id);
+          if(!empty($request->name)){
+          $Client->name = $request->name;
+          }
+          if(!empty($request->street)){
+          $Client->street = $request->street;
+          }
+          if(!empty($request->CompanyState)){
+          $Client->CompanyState = $request->CompanyState;
+          }
+          if(!empty($request->phone)){
+          $Client->phone = $request->phone;
+          }
+          if(!empty($request->companyName)){
+          $Client->companyName = $request->companyName;
+          }
+          if(!empty($request->companyName)){
+          $Client->companyName = $request->companyName;
+          }
+          if(!empty($request->companyCity)){
+          $Client->companyCity = $request->companyCity;
+          }
+          if(!empty($request->PostalCode)){
+          $Client->PostalCode = $request->PostalCode;
+          }
+          $Client->save();
+        }
+
         Invoice::create([
             'invoicetype'=>$request->invoicetype,
             'date'=>$request->date,
@@ -55,27 +86,7 @@ class InvoiceController extends Controller
             'products_id'=>$request->products_id,
             'qty'=>$request->qty,
         ]);
-        Client::create([
-            'name'=>$request->name,
-            'street'=>$request->street,
-            'CompanyState'=>$request->CompanyState,
-            'phone'=>$request->phone,
-            'companyName'=>$request->companyName,
-            'companyCity'=>$request->companyCity,
-            'PostalCode'=>$request->PostalCode,
-        ]);
-        if($request->checkbox == ['on']){
-        }else{
-            Client::find($request->clients_id)->update([
-                'name'=>$request->name_edit,
-                'street'=>$request->street_edit,
-                'CompanyState'=>$request->CompanyState_edit,
-                'phone'=>$request->phone_edit,
-                'companyName'=>$request->companyName_edit,
-                'companyCity'=>$request->companyCity_edit,
-                'PostalCode'=>$request->PostalCode_edit,
-            ]);
-        }
+
         return \redirect()->route('invoices.create')->with('add','Success create data');     
     }
 
@@ -119,8 +130,9 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Invoice $invoice)
     {
-        //
+        $invoice->delete();
+        return \redirect()->route('invoices.create')->with('delete','Success delete data');     
     }
 }

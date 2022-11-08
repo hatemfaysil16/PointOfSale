@@ -81,7 +81,7 @@ Invoices | Add New Invoice
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group mt-2">
-                                <label class="ckbox"><input type="checkbox" class="checked" id="checkbox" name="checkbox[]" onchange='act(this)' checked ><span>Same Address?</span></label>
+                                <label class="ckbox"><input type="checkbox" class="checked" id="checkbox" name="checkbox[]" onchange='act(this)' ><span>Same Address?</span></label>
 
                             </div>
                         </div>
@@ -93,39 +93,39 @@ Invoices | Add New Invoice
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control customerName" name="name_edit"  id="customerName" placeholder="Customer Name" disabled>
+                                        <input type="text" class="form-control customerName" name="name"  id="customerName" placeholder="Customer Name" disabled>
                                     </div>                            
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="companyName" name="companyName_edit" placeholder="Company Name" disabled>
+                                            <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Company Name" disabled>
                                         </div>                            
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="streetAddress" name="street_edit" placeholder="Street Address" disabled>
+                                        <input type="text" class="form-control" id="streetAddress" name="street" placeholder="Street Address" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="city" name="companyCity_edit" placeholder="City" disabled>
+                                        <input type="text" class="form-control" id="city" name="companyCity" placeholder="City" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="state" name="CompanyState_edit" placeholder="State" disabled>
+                                        <input type="text" class="form-control" id="state" name="CompanyState" placeholder="State" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="zipCode" name="PostalCode_edit" placeholder="Zip Code" disabled>
+                                        <input type="text" class="form-control" id="zipCode" name="PostalCode" placeholder="Zip Code" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="phone" name="phone_edit" placeholder="Phone" disabled>
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -290,7 +290,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="total-packs">Total Packs</span>
                                     </div>
-                                    <input aria-describedby="total-packs" aria-label="Total Packs" id="totalpacks" class="form-control" placeholder="3" type="text" disabled>
+                                    <input aria-describedby="total-packs" aria-label="Total Packs" id="totalpacks" class="form-control" placeholder="{{$DataInvoicesCount}}" type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -300,7 +300,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="sub-total">Sub Total</span>
                                     </div>
-                                    <input aria-describedby="sub-total" aria-label="Sub Total" id="subTotal" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="sub-total" aria-label="Sub Total" id="subTotal" class="form-control" placeholder="{{$DataInvoices->sum('Total')}}" type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -312,7 +312,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="customer-balance">Customer Balance</span>
                                     </div>
-                                    <input aria-describedby="customer-balance" aria-label="Customer Balance" id="customerBalance" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="customer-balance" aria-label="Customer Balance" id="customerBalance" class="form-control" placeholder="{{$DataInvoices->sum('Total')}}" type="text" disabled>
                                 </div>
                             </div>
                         </div>

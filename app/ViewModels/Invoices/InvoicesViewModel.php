@@ -13,6 +13,7 @@ class InvoicesViewModel extends ViewModel
     public  $client;
     public  $product;
     public  $DataInvoices;
+    public  $DataInvoicesCount;
 
     public function __construct($Invoice = null)
     {
@@ -20,6 +21,7 @@ class InvoicesViewModel extends ViewModel
         $this->client = Client::get();
         $this->product = Product::get();
         $this->DataInvoices = Invoice::paginate(5);
+        $this->DataInvoicesCount = Invoice::count();
         $this->Invoice = is_null($Invoice) ? new Invoice(old()) : $Invoice;
     }
 
