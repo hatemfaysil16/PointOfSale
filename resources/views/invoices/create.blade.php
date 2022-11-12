@@ -166,8 +166,10 @@ Invoices | Add New Invoice
                                         <input type="text" class="form-control" value="{{old('PostalCode')}}" name="PostalCode" id="zipCode2" placeholder="Zip Code">
                                     </div>
                                 </div>
+                                <input type="text" value="{{!empty($Invoice_number->number)?$Invoice_number->number:$Invoice_number}}" name="invoice_number">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
+                                        
                                         <input type="text" class="form-control" value="{{old('phone')}}" name="phone" id="phone2" placeholder="Phone">
                                     </div>
                                 </div>

@@ -17,8 +17,6 @@ class CreatePurchasesTable extends Migration
             $table->id();
             $table->date('date');
             $table->foreignId('products_id')->references('id')->on('products')->cascadeOnUpdate()->cascadeOnDelete();
-
-            
             $table->string('quantity');
             $table->string('PurchasePrice');
             $table->date('ProductionDate');

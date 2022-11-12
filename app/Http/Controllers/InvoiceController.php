@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Actions\Invoice\StoreInvoiceAction;
 use App\Http\Requests\Invoices\InvoicesRequest;
 use App\Models\Client;
 use App\Models\Invoice;
+use App\Models\invoices_number;
 use App\Models\Product;
 use App\ViewModels\Invoices\InvoicesViewModel;
 use Illuminate\Http\Request;
@@ -29,6 +28,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
+        
         return view("invoices.create",new InvoicesViewModel());
     }
 
@@ -49,6 +49,8 @@ class InvoiceController extends Controller
      */
     public function store(InvoicesRequest $request)
     {
+        // return $request->invoice_number;
+        // return $request->all();
         if($request->checkbox == ['on']){
         }else{
           $Client = Client::find($request->clients_id);
@@ -78,15 +80,17 @@ class InvoiceController extends Controller
           }
           $Client->save();
         }
-
+        $invoices_number=invoices_number::firstOrCreate([
+            'number'=>$request->invoice_number,
+        ]);
         Invoice::create([
             'invoicetype'=>$request->invoicetype,
             'date'=>$request->date,
             'clients_id'=>$request->clients_id,
             'products_id'=>$request->products_id,
             'qty'=>$request->qty,
+            'invoices_numbers_id'=>$invoices_number->id,
         ]);
-
         return \redirect()->route('invoices.create')->with('add','Success create data');     
     }
 

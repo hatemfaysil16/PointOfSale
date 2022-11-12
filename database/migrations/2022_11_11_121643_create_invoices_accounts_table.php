@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInvoicesTable extends Migration
+class CreateInvoicesAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,17 @@ class CreateInvoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('invoices_accounts', function (Blueprint $table) {
             $table->id();
-            $table->enum('invoicetype', ['company', 'shop']);
-            $table->date('date');
             $table->foreignId('invoices_numbers_id')->references('id')->on('invoices_numbers')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('clients_id')->references('id')->on('clients')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('products_id')->references('id')->on('products')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->string('qty');
+            $table->string('totalpacks');
+            $table->string('subtotal');
+            $table->string('customerbalance');
+            $table->string('additionalDiscount');
+            $table->float('tax');
+            $table->float('total');
+            $table->float('paid');
+            $table->float('Left');
             $table->timestamps();
         });
     }
@@ -32,6 +35,6 @@ class CreateInvoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('invoices_accounts');
     }
 }
