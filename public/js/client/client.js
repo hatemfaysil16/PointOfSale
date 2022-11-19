@@ -1,3 +1,12 @@
+
+    // $('#additionalDiscount').on('click', function () {
+            // var subtotal = $('#subtotalNew').val();
+            // var additionalDiscount = $('#additionalDiscountNew').val();
+            // var tax = $('#tax').val();
+            // var totalpacks = $('#totalpacks').val(   (subtotal - additionalDiscount )  + tax   );
+            // console.log(totalpacks);
+    // });
+
 //START GET CITY
 $('#clients_id').on('change', function () {
     var clients_id = $('#clients_id').val();
@@ -75,30 +84,3 @@ function act(element) {
     } 
 }
 // END GET CITY
-
-
-
-
-//    function act(element){
-//        if($(element). prop('checked'))  
-//        {
-//         $('#customerName').attr("disabled", "");
-//         $('#companyName').attr("disabled", "");
-//         $('#streetAddress').attr("disabled", "");
-//         $('#city').attr("disabled", "");
-//         $('#state').attr("disabled", "");
-//         $('#phone').attr("disabled", "");
-//         $('#zipCode').attr("disabled", "");
-//         console.log('You have Checked it');
-//        }else
-//        {
-//         $('#customerName').attr("disabled", false);
-//         $('#companyName').attr("disabled", false);
-//         $('#streetAddress').attr("disabled", false);
-//         $('#city').attr("disabled", false);
-//         $('#state').attr("disabled", false);
-//         $('#phone').attr("disabled", false);
-//         $('#zipCode').attr("disabled", false);
-//         console.log('You Un-Checked it');
-//        }
-//    }

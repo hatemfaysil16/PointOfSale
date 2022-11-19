@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource("invoices",InvoiceController::class);
     Route::get("invoices/ajaxProducts/{product}",[InvoiceController::class,'ajaxProducts']);
     Route::get("invoices/ajaxClient/{client}",[InvoiceController::class,'ajaxClient']);
+    Route::post("storeInvoicesaccount",[InvoiceController::class,'storeInvoicesaccount'])->name('storeInvoicesaccount');
     Route::resource("warehouse",WareHouseController::class);
 });
 require __DIR__.'/auth.php';

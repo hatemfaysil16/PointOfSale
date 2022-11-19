@@ -32,16 +32,14 @@ Invoices | Add New Invoice
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <select class="form-control select2-no-search" disabled>
-                                    <option value="" disabled="">Select invoicetype</option>
-                                    @foreach (App\Models\Consts::INVOICETYPE as $item)
-                                    @if (isset($Invoice))
-                                    {{--  edit  --}}
-                                    <option value="{{$item}}" {{ $item == $Invoice->invoicetype ?'selected':''}}>{{$item}}</option>
-                                    @else
-                                    {{--  create  --}}
-                                    <option value="{{$item}}" @if (old('invoicetype')==$item) {{ 'selected' }} @endif >{{$item}}</option>
-                                    @endif
-                                    @endforeach
+                                    <option label="Invoice type">
+                                    </option>
+                                    <option value="company">
+                                        Company
+                                    </option>
+                                    <option value="shop">
+                                        Shop
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -52,7 +50,7 @@ Invoices | Add New Invoice
                                         <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                     </div>
                                 </div>
-                                <input class="form-control fc-datepicker" id="production-date" placeholder="MM/DD/YYYY" type="date" name="date" value="{{ $Invoice->date }}" disabled>
+                                <input class="form-control fc-datepicker" id="invoice-date" placeholder="MM/DD/YYYY" type="text" disabled>
                             </div>
                             
                             
@@ -65,84 +63,85 @@ Invoices | Add New Invoice
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->name}}" id="customerName" placeholder="Customer Name" disabled>
+                                        <input type="text" class="form-control" id="customerName" placeholder="Customer Name" disabled>
                                     </div>                            
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="companyName" value="{{$Invoice->Client->companyName}}" placeholder="Company Name" disabled>
+                                            <input type="text" class="form-control" id="companyName" placeholder="Company Name" disabled>
                                         </div>                            
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->street}}"  id="streetAddress" placeholder="Street Address" disabled>
+                                        <input type="text" class="form-control" id="streetAddress" placeholder="Street Address" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control"  value="{{$Invoice->Client->companyCity}}" id="city" placeholder="City" disabled>
+                                        <input type="text" class="form-control" id="city" placeholder="City" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->CompanyState}}"  id="state" placeholder="State" disabled>
+                                        <input type="text" class="form-control" id="state" placeholder="State" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->PostalCode}}" id="zipCode" placeholder="Zip Code" disabled>
+                                        <input type="text" class="form-control" id="zipCode" placeholder="Zip Code" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->phone}}"  id="phone" placeholder="Phone" disabled>
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone" disabled>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <h6 class="card-title mb-1">Ship To</h6>
+
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->name}}" id="customerName" placeholder="Customer Name" disabled>
+                                        <input type="text" class="form-control" id="customerName" placeholder="Customer Name" disabled>
                                     </div>                            
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="companyName" value="{{$Invoice->Client->companyName}}" placeholder="Company Name" disabled>
+                                            <input type="text" class="form-control" id="companyName" placeholder="Company Name" disabled>
                                         </div>                            
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->street}}"  id="streetAddress" placeholder="Street Address" disabled>
+                                        <input type="text" class="form-control" id="streetAddress" placeholder="Street Address" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control"  value="{{$Invoice->Client->companyCity}}" id="city" placeholder="City" disabled>
+                                        <input type="text" class="form-control" id="city" placeholder="City" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->CompanyState}}"  id="state" placeholder="State" disabled>
+                                        <input type="text" class="form-control" id="state" placeholder="State" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->PostalCode}}" id="zipCode" placeholder="Zip Code" disabled>
+                                        <input type="text" class="form-control" id="zipCode" placeholder="Zip Code" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->phone}}"  id="phone" placeholder="Phone" disabled>
+                                        <input type="text" class="form-control" id="phone" placeholder="Phone" disabled>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                        
                         </div>
                     </div>
                     <hr />
@@ -159,22 +158,56 @@ Invoices | Add New Invoice
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $i=1;
-                                @endphp
-                                @foreach ($ShowDataInvoices as $DataInvoice)
                                 <tr>
-                                    <th scope="row">{{$i++}}</th>
-                                    <td>{{$DataInvoice->Product->name}}</td>
-                                    <td>{{$DataInvoice->Product->BoxCostPrice}}</td>
-                                    <td>{{$DataInvoice->Product->PacksPerBox}}</td>
-                                    <td>{{$DataInvoice->qty}}</td>
-                                    <td>{{$DataInvoice->Total}}</td>
+                                    <th scope="row">1</th>
+                                    <td>Tiger Nixon</td>
+                                    <td>15302</td>
+                                    <td>144423213</td>
+                                    <td>1000</td>
+                                    <td>22351223133232</td>
                                 </tr>
-                                @endforeach
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Tiger Nixon</td>
+                                    <td>15302</td>
+                                    <td>144423213</td>
+                                    <td>1000</td>
+                                    <td>22351223133232</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Tiger Nixon</td>
+                                    <td>15302</td>
+                                    <td>144423213</td>
+                                    <td>1000</td>
+                                    <td>22351223133232</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Tiger Nixon</td>
+                                    <td>15302</td>
+                                    <td>144423213</td>
+                                    <td>1000</td>
+                                    <td>22351223133232</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Tiger Nixon</td>
+                                    <td>15302</td>
+                                    <td>144423213</td>
+                                    <td>1000</td>
+                                    <td>22351223133232</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Tiger Nixon</td>
+                                    <td>15302</td>
+                                    <td>144423213</td>
+                                    <td>1000</td>
+                                    <td>22351223133232</td>
+                                </tr>
                             </tbody>
                         </table>
-                        {{$DataInvoices->links()}}
                     </div>
                     <div class="row mt-5">
                         <div class="col-sm-12 col-md-4">
@@ -183,7 +216,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="total-packs">Total Packs</span>
                                     </div>
-                                    <input aria-describedby="total-packs" aria-label="Total Packs" value="{{$Invoice->totalpacks}}" id="totalpacks" class="form-control" placeholder="3" type="text" disabled>
+                                    <input aria-describedby="total-packs" aria-label="Total Packs" id="totalpacks" class="form-control" placeholder="3" type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +226,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="sub-total">Sub Total</span>
                                     </div>
-                                    <input aria-describedby="sub-total" aria-label="Sub Total" value="{{$Invoice->subtotal}}" id="subTotal" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="sub-total" aria-label="Sub Total" id="subTotal" class="form-control" placeholder="300.00" type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +238,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="customer-balance">Customer Balance</span>
                                     </div>
-                                    <input aria-describedby="customer-balance" aria-label="Customer Balance" value="{{$Invoice->customerbalance}}" id="customerBalance" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="customer-balance" aria-label="Customer Balance" id="customerBalance" class="form-control" placeholder="300.00" type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +248,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="additional-discount">Additional Discount</span>
                                     </div>
-                                    <input aria-describedby="additional-discount" aria-label="Additional Discount"  id="additionalDiscount" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="additional-discount" aria-label="Additional Discount" id="additionalDiscount" class="form-control" placeholder="300.00" type="text" disabled>
                                 </div>
                             </div>
                         </div>

@@ -37,6 +37,7 @@ class CreateProductsTable extends Migration
                         
             $table->string('CountryOfOrigin');
             $table->string('Manufacturer');
+
             $table->timestamps();
         });
     }

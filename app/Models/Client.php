@@ -9,7 +9,7 @@ class Client extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
+    
    public function scopeSearch($query)
    {
         $search = Request()->query('name');

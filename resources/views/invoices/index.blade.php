@@ -14,16 +14,7 @@ Invoices | All Invoices
             <h4 class="content-title mb-0 my-auto">Invoices</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ All Invoices</span>
         </div>
     </div>
-    <form>
-        <div class="input-group">
-            <input class="form-control" placeholder="Search for..." type="text">
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">
-                    <span class="input-group-btn"><i class="fa fa-search"></i></span>
-                </button>
-            </span>
-        </div>
-    </form>
+        @include('layouts.component.form-search.search',['route'=>route('products.index')])
 </div>
 <!-- breadcrumb -->
 
@@ -39,6 +30,7 @@ Invoices | All Invoices
                     <table class="table table-hover mb-0 text-md-nowrap">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Invoice ID</th>
                                 <th>Invoice Type</th>
                                 <th>Invoice Date</th>
@@ -52,73 +44,28 @@ Invoices | All Invoices
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($invoices_account as $key=>$item)
                             <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Company</td>
-                                <td>24/06/2022</td>
-                                <td>Ahmed Mikkawe</td>
-                                <td>Shebin Alkom</td>
-                                <td>Menofia</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-
+                                <th scope="row">{{++$key}}</th>
+                                <td>{{$item->number}}</td>
+                                <td>{{$item->invoicetype}}</td>
+                                <td>{{$item->date}}</td>
+                                <td>{{$item->Client->name}}</td>
+                                <td>{{$item->Client->companyCity}}</td>
+                                <td>{{$item->Client->CompanyState}}</td>
+                                <td>{{$item->total}}</td>
+                                <td>{{$item->paid}}</td>
+                                <td>{{$item->Left}}</td>
                                 <td>
                                     <div class="btn-icon-list">
-                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route("invoices.show",$item->id) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Company</td>
-                                <td>24/06/2022</td>
-                                <td>Ahmed Mikkawe</td>
-                                <td>Shebin Alkom</td>
-                                <td>Menofia</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Company</td>
-                                <td>24/06/2022</td>
-                                <td>Ahmed Mikkawe</td>
-                                <td>Shebin Alkom</td>
-                                <td>Menofia</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Company</td>
-                                <td>24/06/2022</td>
-                                <td>Ahmed Mikkawe</td>
-                                <td>Shebin Alkom</td>
-                                <td>Menofia</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    {{$invoices_account->links()}}
                 </div>
             </div>
         </div>
