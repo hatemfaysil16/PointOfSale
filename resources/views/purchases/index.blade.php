@@ -30,6 +30,7 @@ Clients | All Purchases
                     <table class="table table-hover mb-0 text-md-nowrap">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Purchase ID</th>
                                 <th>Product Name</th>
                                 <th>Purchase Date</th>
@@ -48,6 +49,7 @@ Clients | All Purchases
                             @foreach ($Purchases as $item)
                             <tr>
                                 <th scope="row">{{$i++}}</th>
+                                <td>{{$item->InvoiceNumber}}</td>
                                 <td>{{!empty($item->products_id)?$item->Product->name:''}}</td>
                                 <td>{{$item->date}}</td>
                                 <td>{{$item->quantity}}</td>

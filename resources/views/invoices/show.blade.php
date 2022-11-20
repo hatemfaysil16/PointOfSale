@@ -193,7 +193,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="sub-total">Sub Total</span>
                                     </div>
-                                    <input aria-describedby="sub-total" aria-label="Sub Total" value="{{$Invoice->subtotal}}" id="subTotal" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="sub-total" aria-label="Sub Total" value="{{$Invoice->subtotal}}" id="subTotal" class="form-control"  type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +205,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="customer-balance">Customer Balance</span>
                                     </div>
-                                    <input aria-describedby="customer-balance" aria-label="Customer Balance" value="{{$Invoice->customerbalance}}" id="customerBalance" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="customer-balance" aria-label="Customer Balance" value="{{$Invoice->customerbalance}}" id="customerBalance" class="form-control"  type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +215,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="additional-discount">Additional Discount</span>
                                     </div>
-                                    <input aria-describedby="additional-discount" aria-label="Additional Discount"  id="additionalDiscount" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="additional-discount" aria-label="Additional Discount" value="{{$Invoice->additionalDiscount}}"  id="additionalDiscount" class="form-control"  type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +225,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="tax">Tax</span>
                                     </div>
-                                    <input aria-describedby="tax" aria-label="tax" id="taxes" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="tax" aria-label="tax" id="taxes" class="form-control" value="{{$Invoice->tax}}" type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +237,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="total">Total</span>
                                     </div>
-                                    <input aria-describedby="total" aria-label="total" id="totals" class="form-control bg-success-gradient text-white font-weight-bold" value="300.00" type="text" disabled>
+                                    <input aria-describedby="total" aria-label="total" id="totals" value="{{$Invoice->total}}" class="form-control bg-success-gradient text-white font-weight-bold" value="300.00" type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +249,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="paid">Paid</span>
                                     </div>
-                                    <input aria-describedby="paid" aria-label="Paid" id="paids" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="paid" aria-label="Paid" id="paids" value="{{$Invoice->paid}}" class="form-control"  type="text" disabled>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +259,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="left">Left</span>
                                     </div>
-                                    <input aria-describedby="left" aria-label="Left" id="lefts" class="form-control" placeholder="300.00" type="text" disabled>
+                                    <input aria-describedby="left" aria-label="Left" id="lefts"  value="{{$Invoice->Left}}" class="form-control"  type="text" disabled>
                                 </div>
                             </div>
                         </div>

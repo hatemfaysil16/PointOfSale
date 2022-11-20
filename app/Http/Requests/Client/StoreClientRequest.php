@@ -24,13 +24,13 @@ class StoreClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required','min:3','max:255'],
-            'CompanyState'=>['required','min:3','max:255'],
-            'street'=>['required','min:3','max:1000'],
-            'companyCity'=>['required','min:3','max:14'],
-            'PostalCode'=>['required','min:3','max:14'],
-            'phone'=>['required','min:3','max:14'],
-            'companyName'=>['required','min:3','max:14'],
+            'name'=>['required','max:255'],
+            'CompanyState'=>['required','max:255'],
+            'street'=>['required','max:1000'],
+            'companyCity'=>['required','max:14'],
+            'PostalCode'=>['required','max:14'],
+            'phone'=>['required','max:14'],
+            'companyName'=>['required','max:14'],
         ];
     }
 }

@@ -1,11 +1,17 @@
+    $('input[name="additionalDiscount"]').on('keyup',function(){
+             $('input[name="total"]').val(   (+$('input[name="subtotal"]').val() - +$('input[name="additionalDiscount"]').val() )  + +$('input[name="tax"]').val()   );
+             $('#totals').val(   (+$('input[name="subtotal"]').val() - +$('input[name="additionalDiscount"]').val() )  + +$('input[name="tax"]').val()   );
+    });
 
-    // $('#additionalDiscount').on('click', function () {
-            // var subtotal = $('#subtotalNew').val();
-            // var additionalDiscount = $('#additionalDiscountNew').val();
-            // var tax = $('#tax').val();
-            // var totalpacks = $('#totalpacks').val(   (subtotal - additionalDiscount )  + tax   );
-            // console.log(totalpacks);
-    // });
+    $('input[name="tax"]').on('keyup',function(){
+             $('input[name="total"]').val(   (+$('input[name="subtotal"]').val() - +$('input[name="additionalDiscount"]').val() )  + +$('input[name="tax"]').val()   );
+             $('#totals').val(   (+$('input[name="subtotal"]').val() - +$('input[name="additionalDiscount"]').val() )  + +$('input[name="tax"]').val()   );
+    });
+    $('input[name="paid"]').on('keyup',function(){
+             $('input[name="Left"]').val(   (+$('input[name="total"]').val() - +$('input[name="paid"]').val() )    );
+             $('#Left').val(   (+$('input[name="total"]').val() - +$('input[name="paid"]').val() )    );
+    });
+
 
 //START GET CITY
 $('#clients_id').on('change', function () {

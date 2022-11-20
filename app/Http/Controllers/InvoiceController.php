@@ -38,7 +38,6 @@ class InvoiceController extends Controller
 
     public function store(InvoicesRequest $request)
     {
-
         $Invoices_account = Invoices_account::where('users_id',Auth::user()->id)->latest()->first();
         if(!empty($Invoices_account)){
             $number =$Invoices_account->number+1;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Invoices;
 
+use App\Rules\Invoice\InvoiceRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class InvoicesRequest extends FormRequest
@@ -26,6 +27,7 @@ class InvoicesRequest extends FormRequest
         return [
             'products_id'=>['required','exists:products,id'],
             'qty'=>['required'],
+            // 'qty'=>[new InvoiceRule($this->products_id),'required'],
         ];
     }
 }

@@ -34,15 +34,14 @@ Invoices | Add New Invoice
 
                         
 
-                {{--  ---------------------------------------hatem  --}}
                         <div class="col-12">
                             <h4 class="card-title mb-1">Product Information</h4>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <input type="hidden" id="url" value="{{asset('')}}">
                             <div class="form-group">
-                                <select class="form-control"  id="products_id" placeholder="Product Name" name="products_id">
-                                    <option label="Choose Product" disabled></option>
+                                <select class="form-control"  id="products_id" placeholder="Product Name" name="products_id" >
+                                    <option selected="" label="Choose Product" disabled>Choose Product</option>
                                     @foreach ($product as $itemNew)
                                         @if (isset($product->id))
                                         {{--  edit  --}}
@@ -57,8 +56,8 @@ Invoices | Add New Invoice
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <select class="form-control"  id="productBarcode" placeholder="Product Name" name="ProductBarcode">
-                                    <option label="Choose Product" disabled></option>
+                                <select class="form-control"  id="productBarcode" placeholder="Product Name" name="ProductBarcode" >
+                                    <option selected="" label="Choose Barcode" disabled>Choose Barcode</option>
                                     @foreach ($product as $item)
                                         @if (isset($product->id))
                                         {{--  edit  --}}
@@ -91,10 +90,10 @@ Invoices | Add New Invoice
                         </div>
                         <div class="col-sm-12 col-md-4">
                             <div class="form-group">
-                                <input type="number" class="form-control" name="qty" value="{{$Invoice->qty}}" id="product-name" placeholder="Quantity" >
+                                <input type="number" class="form-control" name="qty" value="{{$Invoice->qty}}"  id="product-name" placeholder="Quantity" >
                             </div>
+                             {{--  min="0" max="5"  --}}
                         </div>
-                {{--  ---------------------------------------hatem  --}}
 
                     </div>
 
@@ -153,8 +152,8 @@ Invoices | Add New Invoice
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <select class="form-control select2-no-search" value=""  name="invoicetype">
-                                    <option value="" disabled="">Select invoicetype</option>
+                                <select class="form-control select2-no-search" value=""  name="invoicetype" required>
+                                    <option selected="" label="Choose Client" disabled>Select invoicetype</option>
                                     @foreach (App\Models\Consts::INVOICETYPE as $item)
                                     @if (isset($Invoice))
                                     {{--  edit  --}}
@@ -174,7 +173,7 @@ Invoices | Add New Invoice
                                         <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                     </div>
                                 </div>
-                                <input class="form-control fc-datepicker" id="production-date" placeholder="MM/DD/YYYY" type="date" name="date" value="{{ $Invoice->date }}">
+                                <input class="form-control fc-datepicker" id="production-date" placeholder="MM/DD/YYYY" type="date" name="date" value="{{ $Invoice->date }}" required>
                             </div>
                             
                             
@@ -183,9 +182,9 @@ Invoices | Add New Invoice
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6">
                                 </div>
-                                <select class="form-control"  id="clients_id" placeholder="Client Name" name="clients_id">
-                                    <option label="Choose Client"></option>
+                                <select class="form-control"  id="clients_id" placeholder="Client Name" name="clients_id" required>
                                     @foreach ($client as $item)
+                                    <option selected="" label="Choose Client" disabled></option>
                                         @if (isset($client->id))
                                         {{--  edit  --}}
                                         <option value="{{$item->id}}" {{ $item->id == $client->clients_id ?'selected':''}}>{{$item->name}}</option>
@@ -301,7 +300,7 @@ Invoices | Add New Invoice
                                         <span class="input-group-text" id="total-packs">Total Packs</span>
                                     </div>
                                     <input aria-describedby="total-packs" aria-label="Total Packs"  class="form-control" placeholder="{{$DataInvoicesCount}}" type="text" disabled>
-                                    <input type="text" name="totalpacks"  id="totalpacks" value="{{$DataInvoicesCount}}">
+                                    <input type="hidden" name="totalpacks"  id="totalpacks" value="{{$DataInvoicesCount}}" required>
                                 </div>
                             </div>
                         </div>
@@ -312,7 +311,7 @@ Invoices | Add New Invoice
                                         <span class="input-group-text" id="sub-total">Sub Total</span>
                                     </div>
                                     <input aria-describedby="sub-total" aria-label="Sub Total" id="subTotal" class="form-control" placeholder="{{$DataInvoices->sum('Total')}}" type="text" disabled>
-                                    <input type="text" id="subtotalNew" name="subtotal" value="{{$DataInvoices->sum('Total')}}">
+                                    <input type="hidden" id="subtotalNew" name="subtotal" value="{{$DataInvoices->sum('Total')}}">
                                 </div>
                             </div>
                         </div>
@@ -345,7 +344,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="tax">Tax</span>
                                     </div>
-                                    <input name="tax" id="tax" value="" class="form-control" placeholder="" type="text">
+                                    <input name="tax" id="tax" value="" class="form-control" placeholder="" type="text" required>
                                 </div>
                             </div>
                         </div>
@@ -357,8 +356,8 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="total">Total</span>
                                     </div>
-                                    <input aria-describedby="total" aria-label="total" value="" id="totals" class="form-control bg-success-gradient text-white font-weight-bold" value="" type="text" disabled>
-                                    <input type="text" value="" name="total">
+                                    <input aria-describedby="total" aria-label="total" value="{{$DataInvoices->sum('Total')}}" id="totals" class="form-control bg-success-gradient text-white font-weight-bold" value="" type="text" disabled>
+                                    <input type="hidden" value="" name="total" required>
                                 </div>
                             </div>
                         </div>
@@ -370,7 +369,7 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="paid">Paid</span>
                                     </div>
-                                    <input aria-describedby="paid" aria-label="Paid" value="" id="paids" class="form-control" placeholder="" type="text">
+                                    <input aria-describedby="paid" aria-label="Paid" name="paid" value="" id="paid" class="form-control" placeholder="" type="text" required>
                                 </div>
                             </div>
                         </div>
@@ -380,8 +379,8 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="left">Left</span>
                                     </div>
-                                    <input aria-describedby="left" aria-label="Left" value="" id="lefts" class="form-control" placeholder="" type="text" disabled>
-                                    <input type="text" value="Left">
+                                    <input aria-describedby="left" aria-label="Left" value="" id="Left" class="form-control" placeholder="" type="text" disabled>
+                                    <input type="hidden" name="Left" value="" required>
                                 </div>
                             </div>
                         </div>

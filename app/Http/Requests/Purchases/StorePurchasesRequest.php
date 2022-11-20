@@ -26,13 +26,13 @@ class StorePurchasesRequest extends FormRequest
         return [
             'date'=>['required','date'],
             'products_id'=>['required','exists:products,id'],
-            'quantity'=>['required','min:3','max:225'],
-            'PurchasePrice'=>['required','min:3','max:225'],
-            'ProductionDate'=>['required','min:3','max:225'],
-            'ExpiryDate'=>['required','min:3','max:225'],
-            'WarehouseNumber'=>['required','min:3','max:225'],
-            'InvoiceNumber'=>['required','min:3','max:225'],
-            'total'=>['required','min:3','max:225'],
+            'quantity'=>['required','max:225'],
+            'PurchasePrice'=>['required','max:225'],
+            'ProductionDate'=>['required','max:225'],
+            'ExpiryDate'=>['required','max:225'],
+            'WarehouseNumber'=>['required','max:225'],
+            'InvoiceNumber'=>['required','max:225'],
+            'total'=>['required','max:225'],
         ];
     }
 }
