@@ -42,8 +42,9 @@
                                 <th>Product Group</th>
                                 <th>Country of Origin</th>
                                 <th>Manufacturer</th>
-                                <th>Available</th>
+                                <th>Buy</th>
                                 <th>Sold</th>
+                                <th>Available</th>
                                 <th>Box Client Price</th>
                                 <th>Box Company Price</th>
                                 <th>Prod. Date</th>
@@ -54,7 +55,36 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            @foreach ($product as $item)
+                                <tr>
+                                <th scope="row">1534535345</th>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->ProductGroup}}</td>
+                                <td>{{$item->CountryOfOrigin}}</td>
+                                <td>{{$item->Manufacturer}}</td>
+                                @php
+                                    $Purchase = App\Models\Purchase::where('products_id',$item->id)->sum('quantity');
+                                    $sell = App\Models\Invoice::where('products_id',$item->id)->where('type','show')->sum('qty');
+                                @endphp
+                                <td>{{$Purchase}}</td>
+                                <td>{{$sell}}</td>
+                                <td>{{$Purchase - $sell}}</td>
+                                <td>223512</td>
+                                <td>223512</td>
+                                <td>25/2/2000</td>
+                                <td>25/2/2000</td>
+                                <td>1 Y 2 M 3 D</td>
+                                <td>1534535345</td>
+                                <td>
+                                    <div class="btn-icon-list">
+                                        <a href="{{ route("warehouse.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
+                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
+                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            @endforeach
+                            </tr>
+                            {{--  <tr>
                                 <th scope="row">1534535345</th>
                                 <td>Tiger Nixon</td>
                                 <td>Cloths</td>
@@ -75,95 +105,7 @@
                                         <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>Cloths</td>
-                                <td>United Kingdom</td>
-                                <td>Samsung</td>
-                                <td>1200</td>
-                                <td>400</td>
-                                <td>223512</td>
-                                <td>223512</td>
-                                <td>25/2/2000</td>
-                                <td>25/2/2000</td>
-                                <td>1 Y 2 M 3 D</td>
-                                <td>1534535345</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>Cloths</td>
-                                <td>United Kingdom</td>
-                                <td>Samsung</td>
-                                <td>1200</td>
-                                <td>400</td>
-                                <td>223512</td>
-                                <td>223512</td>
-                                <td>25/2/2000</td>
-                                <td>25/2/2000</td>
-                                <td>1 Y 2 M 3 D</td>
-                                <td>1534535345</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>Cloths</td>
-                                <td>United Kingdom</td>
-                                <td>Samsung</td>
-                                <td>1200</td>
-                                <td>400</td>
-                                <td>223512</td>
-                                <td>223512</td>
-                                <td>25/2/2000</td>
-                                <td>25/2/2000</td>
-                                <td>1 Y 2 M 3 D</td>
-                                <td>1534535345</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>Cloths</td>
-                                <td>United Kingdom</td>
-                                <td>Samsung</td>
-                                <td>1200</td>
-                                <td>400</td>
-                                <td>223512</td>
-                                <td>223512</td>
-                                <td>25/2/2000</td>
-                                <td>25/2/2000</td>
-                                <td>1 Y 2 M 3 D</td>
-                                <td>1534535345</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="#" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
+                            </tr>  --}}
                         </tbody>
                     </table>
                 </div>

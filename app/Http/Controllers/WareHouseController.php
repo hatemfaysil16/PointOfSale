@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
+use App\Models\Product;
+use App\Models\Purchase;
 use Illuminate\Http\Request;
 
 class WareHouseController extends Controller
@@ -13,7 +16,8 @@ class WareHouseController extends Controller
      */
     public function index()
     {
-        return view("warehouse.index");
+        $product = Product::get();
+        return view("warehouse.index",compact('product'));
     }
 
     /**
