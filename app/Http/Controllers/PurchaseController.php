@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Purchases\StorePurchasesAction;
 use App\Actions\Purchases\UpdatePurchasesAction;
+use App\Actions\Warehouse\DeleteWarehouseAction;
 use App\Http\Requests\Purchases\StorePurchasesRequest;
 use App\Models\Product;
 use App\Models\Purchase;
@@ -41,6 +42,7 @@ class PurchaseController extends Controller
     }
     public function destroy(Purchase $purchase)
     {
+        app(DeleteWarehouseAction::class)->handle($purchase);
         $purchase->delete();
         return \redirect()->route('purchases.index')->with('delete','Success delete data');  
     }

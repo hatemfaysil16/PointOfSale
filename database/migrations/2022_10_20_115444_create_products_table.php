@@ -30,7 +30,6 @@ class CreateProductsTable extends Migration
             $table->foreignId('typesofweights_id')->references('id')->on('typesofweights')->cascadeOnUpdate()->cascadeOnDelete();
 
 
-
             $table->string('BoxCostPrice');
             $table->string('BoxPrice_shop');
             $table->string('BoxPrice_company');

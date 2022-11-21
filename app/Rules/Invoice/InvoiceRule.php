@@ -2,6 +2,8 @@
 
 namespace App\Rules\Invoice;
 
+use App\Models\Invoice;
+use App\Models\Warehouse;
 use Illuminate\Contracts\Validation\Rule;
 
 class InvoiceRule implements Rule
@@ -26,7 +28,13 @@ class InvoiceRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        // dd($this->products);
+        $available = Warehouse::where('products_id',$this->products)->latest()->pluck('available')->first();
+        $InvoiceProduct = Invoice::where('products_id',$this->products)->sum('qty');
+        if($value+$InvoiceProduct>=$available){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     /**
@@ -36,6 +44,6 @@ class InvoiceRule implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'quantity is not available.';
     }
 }

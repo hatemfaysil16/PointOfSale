@@ -49,65 +49,36 @@
                                 <th>Box Company Price</th>
                                 <th>Prod. Date</th>
                                 <th>Exp. Date</th>
-                                <th>Expires in</th>
                                 <th>Barcode</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($product as $item)
-                                <tr>
-                                <th scope="row">1534535345</th>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->ProductGroup}}</td>
-                                <td>{{$item->CountryOfOrigin}}</td>
-                                <td>{{$item->Manufacturer}}</td>
-                                @php
-                                    $Purchase = App\Models\Purchase::where('products_id',$item->id)->sum('quantity');
-                                    $sell = App\Models\Invoice::where('products_id',$item->id)->where('type','show')->sum('qty');
-                                @endphp
-                                <td>{{$Purchase}}</td>
-                                <td>{{$sell}}</td>
-                                <td>{{$Purchase - $sell}}</td>
-                                <td>223512</td>
-                                <td>223512</td>
+                            @foreach ($warehouse as $key=>$item)
+                            <tr>
+                                <th scope="row">{{$key++}}</th>
+                                <td>{{$item->Product->name}}</td>
+                                <td>{{$item->Product->ProductGroup}}</td>
+                                <td>{{$item->Product->CountryOfOrigin}}</td>
+                                <td>{{$item->Product->Manufacturer}}</td>
+                                <td>{{$item->buy}}</td>
+                                <td>{{$item->sold}}</td>
+                                <td>{{$item->available}}</td>
+                                <td>{{$item->Product->BoxPrice_shop}}</td>
+                                <td>{{$item->Product->BoxPrice_company}}</td>
                                 <td>25/2/2000</td>
-                                <td>25/2/2000</td>
-                                <td>1 Y 2 M 3 D</td>
-                                <td>1534535345</td>
+                                <td>{{$item->ExpiryDate}}</td>
+                                <td>{{$item->Product->ProductBarcode}}</td>
                                 <td>
                                     <div class="btn-icon-list">
-                                        <a href="{{ route("warehouse.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
+                                        <a href="{{ route("warehouse.show",$item->id) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                     </div>
                                 </td>
-                            @endforeach
                             </tr>
-                            {{--  <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Tiger Nixon</td>
-                                <td>Cloths</td>
-                                <td>United Kingdom</td>
-                                <td>Samsung</td>
-                                <td>1200</td>
-                                <td>400</td>
-                                <td>223512</td>
-                                <td>223512</td>
-                                <td>25/2/2000</td>
-                                <td>25/2/2000</td>
-                                <td>1 Y 2 M 3 D</td>
-                                <td>1534535345</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("warehouse.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                        <a href="#" class="btn btn-secondary btn-icon"><i class="fas fa-edit"></i></a>
-                                        <button class="btn btn-danger btn-icon"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>  --}}
+                            @endforeach
                         </tbody>
                     </table>
+                    {{$warehouse->links()}}
                 </div>
             </div>
         </div>

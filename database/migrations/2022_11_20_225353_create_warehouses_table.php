@@ -15,10 +15,13 @@ class CreateWarehousesTable extends Migration
     {
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('products_id')->references('id')->on('products')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->integer('buy');
-            $table->integer('sold');
-            $table->integer('available');
+            $table->foreignId('products_id')->nullable()->references('id')->on('products')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->integer('buy')->default(0);
+            $table->integer('sold')->default(0);
+            $table->integer('available')->default(0);
+            $table->string('InvoiceNumber')->nullable();
+            $table->date('date')->nullable();
+            $table->date('ExpiryDate')->nullable();
             $table->timestamps();
         });
     }

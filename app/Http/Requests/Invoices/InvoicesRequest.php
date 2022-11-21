@@ -26,8 +26,7 @@ class InvoicesRequest extends FormRequest
     {
         return [
             'products_id'=>['required','exists:products,id'],
-            'qty'=>['required'],
-            // 'qty'=>[new InvoiceRule($this->products_id),'required'],
+            'qty'=>[new InvoiceRule($this->products_id),'required'],
         ];
     }
 }

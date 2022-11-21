@@ -24,6 +24,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("invoices/ajaxProducts/{product}",[InvoiceController::class,'ajaxProducts']);
     Route::get("invoices/ajaxClient/{client}",[InvoiceController::class,'ajaxClient']);
     Route::post("storeInvoicesaccount",[InvoiceController::class,'storeInvoicesaccount'])->name('storeInvoicesaccount');
-    Route::resource("warehouse",WareHouseController::class);
+    Route::resource("warehouse",WareHouseController::class)->except(['create','store','edit','update','destroy']);
+// Route::get("warehouse/{warehouse}/{product}",[InvoiceController::class,'show']);
+//<a href="{{ route("warehouse.show",[$item->id,$item->Product->id]) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
+//{{--  Route::get("warehouse/{warehouse}/{product}",[InvoiceController::class,'show']);  --}}
 });
 require __DIR__.'/auth.php';
