@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Actions\Clients\StoreClientAction;
 use App\Actions\Clients\UpdateClientAction;
+use App\Http\Requests\Client\ClientPullRequest;
+use App\Http\Requests\Client\ClientPushRequest;
 use App\Http\Requests\Client\StoreClientRequest;
 use App\Models\Client;
+use App\Models\Payment;
 use App\ViewModels\Client\ClientViewModel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -45,5 +48,23 @@ class ClientController extends Controller
     {
         $client->delete();
         return \redirect()->route('clients.index')->with('delete','Success delete data');  
+    }
+    public function pushMony(ClientPushRequest $request){
+        Payment::create([
+            'clients_id'=>$request->clients_id,
+            'totalInvoice'=>0,
+            'amount'=>$request->amount,
+            'net'=>0 - $request->amount,
+        ]);        
+        return \redirect()->Back()->with('success','Success Push data');  
+    }
+    public function pullMony(ClientPullRequest $request){
+        Payment::create([
+            'clients_id'=>$request->clients_id,
+            'totalInvoice'=>$request->totalInvoice,
+            'amount'=>0,
+            'net'=>$request->totalInvoice - 0,
+        ]);        
+        return \redirect()->Back()->with('success','Success Pull data');  
     }
 }

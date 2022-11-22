@@ -27,8 +27,25 @@ Clients | {{ $Client->name }}
             </div>
 
             <div class="card-body">
-                <h1>1200 USD</h1>
+                <h1>{{$payments->total_balance}} USD</h1>
             </div>
+
+            <form action="{{route('pushMony')}}" method="POST">
+                @csrf
+                @method("POST")
+                <input type="text" name="amount" value="">
+                <input type="hidden" name="clients_id" value="{{$Client->id}}">
+                <button>Push Mony</button>
+            </form>
+
+
+            <form action="{{route('pullMony')}}" method="POST">
+                @csrf
+                @method("POST")
+                <input type="text" name="totalInvoice" value="">
+                <input type="hidden" name="clients_id" value="{{$Client->id}}">
+                <button>Pull Mony</button>
+            </form>
         </div>
     </div>
 </div>
@@ -111,73 +128,27 @@ Clients | {{ $Client->name }}
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($ShowInvoices_account as $key=>$item)
                             <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Company</td>
-                                <td>24/06/2022</td>
-                                <td>Ahmed Mikkawe</td>
-                                <td>Shebin Alkom</td>
-                                <td>Menofia</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-
+                                <th scope="row">{{$key++}}</th>
+                                <td>{{$item->invoicetype}}</td>
+                                <td>{{$item->date}}</td>
+                                <td>{{$item->Client->name}}</td>
+                                <td>{{$item->Client->companyCity}}</td>
+                                <td>{{$item->Client->CompanyState}}</td>
+                                <td>{{$item->total}}</td>
+                                <td>{{$item->paid}}</td>
+                                <td>{{$item->Left}}</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Company</td>
-                                <td>24/06/2022</td>
-                                <td>Ahmed Mikkawe</td>
-                                <td>Shebin Alkom</td>
-                                <td>Menofia</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Company</td>
-                                <td>24/06/2022</td>
-                                <td>Ahmed Mikkawe</td>
-                                <td>Shebin Alkom</td>
-                                <td>Menofia</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1534535345</th>
-                                <td>Company</td>
-                                <td>24/06/2022</td>
-                                <td>Ahmed Mikkawe</td>
-                                <td>Shebin Alkom</td>
-                                <td>Menofia</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>223512424</td>
-                                <td>
-                                    <div class="btn-icon-list">
-                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
+                    {{$ShowInvoices_account->links()}}
                 </div>
             </div>
         </div>

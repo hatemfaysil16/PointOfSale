@@ -183,8 +183,8 @@ Invoices | Add New Invoice
                                 <div class="col-sm-12 col-md-6">
                                 </div>
                                 <select class="form-control"  id="clients_id" placeholder="Client Name" name="clients_id" required>
-                                    @foreach ($client as $item)
                                     <option selected="" label="Choose Client" disabled></option>
+                                    @foreach ($client as $item)
                                         @if (isset($client->id))
                                         {{--  edit  --}}
                                         <option value="{{$item->id}}" {{ $item->id == $client->clients_id ?'selected':''}}>{{$item->name}}</option>
@@ -323,8 +323,8 @@ Invoices | Add New Invoice
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="customer-balance">Customer Balance</span>
                                     </div>
-                                    <input aria-describedby="customer-balance" aria-label="Customer Balance" id="customerBalance" class="form-control" placeholder="{{$DataInvoices->sum('Total')}}" type="text" disabled>
-                                    <input type="hidden"  name="customerbalance" value="{{$DataInvoices->sum('Total')}}">
+                                    <input aria-describedby="customer-balance" aria-label="Customer Balance" id="customerBalance" class="form-control" placeholder="{{!empty($Invoice->customerbalance)?$Invoice->customerbalance:0}}" type="text" disabled>
+                                    <input type="hidden"  name="customerbalance" id="customerBalances" value="{{!empty($Invoice->customerbalance)?$Invoice->customerbalance:0}}">
                                 </div>
                             </div>
                         </div>

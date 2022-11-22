@@ -7,10 +7,12 @@ use App\Http\Requests\Invoices\InvoicesRequest;
 use App\Models\Client;
 use App\Models\Invoice;
 use App\Models\Invoices_account;
+use App\Models\Payment;
 use App\Models\Product;
 use App\ViewModels\Invoices\InvoicesViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class InvoiceController extends Controller
 {
@@ -26,6 +28,10 @@ class InvoiceController extends Controller
     }
     public function create()
     {
+        // $values = DB::table('payments')
+        // ->selectRaw('sum(totalInvoice) as totalInvoice, sum(amount) as amount, (sum(totalInvoice)-sum(amount)) as total_balance')
+        // ->where('clients_id', 1)
+        // ->first();
         return view("invoices.create",new InvoicesViewModel());
     }
 
@@ -34,7 +40,11 @@ class InvoiceController extends Controller
     }
 
     public function ajaxClient(Client $client){
-        return $client;
+        $payments = DB::table('payments')
+        ->selectRaw('sum(totalInvoice) as totalInvoice, sum(amount) as amount, (sum(totalInvoice)-sum(amount)) as total_balance')
+        ->where('clients_id', $client->id)
+        ->first();
+        return ['client'=>$client,'payment'=>$payments];
     }
 
     public function store(InvoicesRequest $request)
@@ -86,7 +96,12 @@ class InvoiceController extends Controller
         }else{
             $number = 1;
         }
-
+        Payment::create([
+            'clients_id'=>$request->clients_id,
+            'totalInvoice'=>$request->total,
+            'amount'=>$request->paid,
+            'net'=>$request->total- $request->paid,
+        ]);
         $dataInvoices= Invoices_account::create($request->validated()+['number'=>$number]+['users_id'=>Auth::user()->id]);
         $Invoice = Invoice::where('users_id',Auth::user()->id)->where('invoicenumber',$dataInvoices->number)->get()->pluck('id');
         foreach($Invoice as $id){Invoice::find($id)->update(['type'=>'accept']);}
@@ -102,35 +117,6 @@ class InvoiceController extends Controller
         return view("invoices.show",new InvoicesViewModel($invoices_account));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Invoice $invoice)
     {
         $invoice->delete();

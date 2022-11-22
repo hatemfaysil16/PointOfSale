@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
 class Invoices_account extends Model
@@ -12,7 +13,7 @@ class Invoices_account extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function Client()
+    public function Client():BelongsTo
     {
         return $this->belongsTo(Client::class,'clients_id');
     }

@@ -20,13 +20,14 @@ Route::group(['middleware' => ['auth']], function () {
 
     
     Route::resource("clients", ClientController::class);
-    Route::resource("invoices",InvoiceController::class);
+    Route::post("clients/pushMony",[ClientController::class,'pushMony'])->name('pushMony');
+    Route::post("clients/pullMony",[ClientController::class,'pullMony'])->name('pullMony');
+ 
+    
+    Route::resource("invoices",InvoiceController::class)->except(['edit','update']);
     Route::get("invoices/ajaxProducts/{product}",[InvoiceController::class,'ajaxProducts']);
     Route::get("invoices/ajaxClient/{client}",[InvoiceController::class,'ajaxClient']);
     Route::post("storeInvoicesaccount",[InvoiceController::class,'storeInvoicesaccount'])->name('storeInvoicesaccount');
     Route::resource("warehouse",WareHouseController::class)->except(['create','store','edit','update','destroy']);
-// Route::get("warehouse/{warehouse}/{product}",[InvoiceController::class,'show']);
-//<a href="{{ route("warehouse.show",[$item->id,$item->Product->id]) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
-//{{--  Route::get("warehouse/{warehouse}/{product}",[InvoiceController::class,'show']);  --}}
 });
 require __DIR__.'/auth.php';
