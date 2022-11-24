@@ -40,7 +40,7 @@ Invoices | Add New Invoice
                         <div class="col-sm-12 col-md-6">
                             <input type="hidden" id="url" value="{{asset('')}}">
                             <div class="form-group">
-                                <select class="form-control"  id="products_id" placeholder="Product Name" name="products_id" >
+                                <select class="form-control select2"  id="products_id" placeholder="Product Name" name="products_id" >
                                     <option selected="" label="Choose Product" disabled>Choose Product</option>
                                     @foreach ($product as $itemNew)
                                         @if (isset($product->id))
@@ -152,7 +152,7 @@ Invoices | Add New Invoice
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <select class="form-control select2-no-search" value=""  name="invoicetype" required>
+                                <select class="form-control" value=""  name="invoicetype" required>
                                     <option selected="" label="Choose Client" disabled>Select invoicetype</option>
                                     @foreach (App\Models\Consts::INVOICETYPE as $item)
                                     @if (isset($Invoice))
@@ -173,7 +173,7 @@ Invoices | Add New Invoice
                                         <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                     </div>
                                 </div>
-                                <input class="form-control fc-datepicker" id="production-date" placeholder="MM/DD/YYYY" type="date" name="date" value="{{ $Invoice->date }}" required>
+                                <input class="form-control" id="production-date" placeholder="MM/DD/YYYY" type="date" name="date" value="{{ $Invoice->date }}" required>
                             </div>
                             
                             
@@ -182,7 +182,7 @@ Invoices | Add New Invoice
                             <div class="form-group">
                                 <div class="col-sm-12 col-md-6">
                                 </div>
-                                <select class="form-control"  id="clients_id" placeholder="Client Name" name="clients_id" required>
+                                <select class="form-control select2"  id="clients_id" placeholder="Client Name" name="clients_id" required>
                                     <option selected="" label="Choose Client" disabled></option>
                                     @foreach ($client as $item)
                                         @if (isset($client->id))

@@ -24,7 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post("clients/pullMony",[ClientController::class,'pullMony'])->name('pullMony');
  
     
-    Route::resource("invoices",InvoiceController::class)->except(['edit','update']);
+    Route::resource("invoices",InvoiceController::class);
     Route::get("invoices/ajaxProducts/{product}",[InvoiceController::class,'ajaxProducts']);
     Route::get("invoices/ajaxClient/{client}",[InvoiceController::class,'ajaxClient']);
     Route::post("storeInvoicesaccount",[InvoiceController::class,'storeInvoicesaccount'])->name('storeInvoicesaccount');

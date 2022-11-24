@@ -30,21 +30,25 @@ Clients | {{ $Client->name }}
                 <h1>{{$payments->total_balance}} USD</h1>
             </div>
 
-            <form action="{{route('pushMony')}}" method="POST">
+            <form class="mx-2" action="{{route('pushMony')}}" method="POST">
                 @csrf
                 @method("POST")
-                <input type="text" name="amount" value="">
-                <input type="hidden" name="clients_id" value="{{$Client->id}}">
-                <button>Push Mony</button>
+                <div class="input-group">
+                    <input class="form-control" type="text" name="amount" value="">
+                    <input type="hidden" name="clients_id" value="{{$Client->id}}">
+                    <button class="btn btn-success">withdraw</button>
+                </div>
             </form>
 
 
-            <form action="{{route('pullMony')}}" method="POST">
+            <form class="mx-2 mt-2 mb-2" action="{{route('pullMony')}}" method="POST">
                 @csrf
                 @method("POST")
-                <input type="text" name="totalInvoice" value="">
-                <input type="hidden" name="clients_id" value="{{$Client->id}}">
-                <button>Pull Mony</button>
+                <div class="input-group">
+                    <input class="form-control" type="text" name="totalInvoice" value="">
+                    <input type="hidden" name="clients_id" value="{{$Client->id}}">
+                    <button class="btn btn-danger">insert</button>
+                </div>
             </form>
         </div>
     </div>
@@ -141,7 +145,7 @@ Clients | {{ $Client->name }}
                                 <td>{{$item->Left}}</td>
                                 <td>
                                     <div class="btn-icon-list">
-                                        <a href="{{ route("invoices.show",1) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route("invoices.show",$item->id) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>
                                     </div>
                                 </td>
                             </tr>
