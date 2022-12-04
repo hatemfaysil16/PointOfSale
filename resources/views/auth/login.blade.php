@@ -11,7 +11,9 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
+<div class="d-flex justify-content-center align-items-center">
+    <img src="{{ asset('assets/img/logo.png') }}" alt="" width="100" style="margin:0 auto">
+</div>
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />
