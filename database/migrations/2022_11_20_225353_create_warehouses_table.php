@@ -19,7 +19,7 @@ class CreateWarehousesTable extends Migration
             $table->integer('buy')->default(0);
             $table->integer('sold')->default(0);
             $table->integer('available')->default(0);
-            $table->string('InvoiceNumber')->nullable();
+            $table->string('WarehouseNumber')->nullable();
             $table->date('date')->nullable();
             $table->date('ExpiryDate')->nullable();
             $table->timestamps();

@@ -37,7 +37,7 @@ class PurchaseController extends Controller
     }
     public function update(StorePurchasesRequest $request,Purchase $purchase)
     {
-        app(UpdatePurchasesAction::class)->handle($purchase,$request->validated());
+        app(UpdatePurchasesAction::class)->handle($purchase,$request->validated(),$request->quantity_old);
         return \redirect()->route('purchases.index')->with('edit','Success edit data');  
     }
     public function destroy(Purchase $purchase)
