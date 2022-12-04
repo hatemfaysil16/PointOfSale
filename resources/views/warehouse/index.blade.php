@@ -42,6 +42,7 @@
                                 <th>Product Group</th>
                                 <th>Country of Origin</th>
                                 <th>Manufacturer</th>
+                                <th>WarehouseNumber</th>
                                 <th>Buy</th>
                                 <th>Sold</th>
                                 <th>Available</th>
@@ -61,6 +62,7 @@
                                 <td>{{$item->Product->ProductGroup}}</td>
                                 <td>{{$item->Product->CountryOfOrigin}}</td>
                                 <td>{{$item->Product->Manufacturer}}</td>
+                                <td>{{$item->WarehouseNumber}}</td>
                                 <td>{{$item->buy}}</td>
                                 <td>{{$item->sold}}</td>
                                 <td>{{$item->available}}</td>

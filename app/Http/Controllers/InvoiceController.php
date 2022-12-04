@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Actions\Warehouse\SellInvoicesAction;
 use App\Actions\Warehouse\SellWarehouseAction;
 use App\Http\Requests\Invoices\InvoicesAccountRequest;
 use App\Http\Requests\Invoices\InvoicesRequest;
@@ -106,7 +107,7 @@ class InvoiceController extends Controller
         $Invoice = Invoice::where('users_id',Auth::user()->id)->where('invoicenumber',$dataInvoices->number)->get()->pluck('id');
         foreach($Invoice as $id){Invoice::find($id)->update(['type'=>'accept']);}
         $dataInvoice = Invoice::where('users_id',Auth::user()->id)->where('invoicenumber',$dataInvoices->number)->get();
-        app(SellWarehouseAction::class)->handle($dataInvoice);
+        app(SellInvoicesAction::class)->handle($dataInvoice);
         return \redirect()->route('invoices.index')->with('add','Success create data');     
     }
 

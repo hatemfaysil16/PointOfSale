@@ -24,19 +24,17 @@ class EditWarehouseAction
         $warehouse= Warehouse::where('products_id',$data['products_id'])->first();
         $warehouse->products_id = $data['products_id'];
         $warehouse->buy = $data['quantity'];
-        $warehouse->available = +$available - +$newQuantity;
+        $warehouse->available = +$available + +$newQuantity;
         $warehouse->ExpiryDate = $data['ExpiryDate'];
         $warehouse->WarehouseNumber = $data['WarehouseNumber'];
         $warehouse->save();
         return $warehouse;
-        }elseif($old<$new){
-            dd('sd');
-        $newQuantity= $old - $new;
-        $available = Warehouse::where('products_id',$data['products_id'])->latest()->pluck('available')->first();
+        }elseif(+$new<+$old){
+        $newQuantity=  +$old - +$new ;
         $warehouse= Warehouse::where('products_id',$data['products_id'])->first();
         $warehouse->products_id = $data['products_id'];
         $warehouse->buy = $data['quantity'];
-        $warehouse->available = $available+$newQuantity;
+        $warehouse->available = +$available - +$newQuantity;
         $warehouse->ExpiryDate = $data['ExpiryDate'];
         $warehouse->WarehouseNumber = $data['WarehouseNumber'];
         $warehouse->save();
