@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Invoices | Add New Invoice
+Invoices | Invoice ID {{ $Invoice->id }}
 @stop
 @section('css')
 @endsection
@@ -10,7 +10,7 @@ Invoices | Add New Invoice
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <h4 class="content-title mb-0 my-auto">Invoices</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Invoice ID 1534535345</span>
+            <h4 class="content-title mb-0 my-auto">Invoices</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ Invoice ID {{ $Invoice->id }}</span>
         </div>
     </div>
     
@@ -23,8 +23,11 @@ Invoices | Add New Invoice
 <div class="row row-sm">
     <div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
         <div class="card  box-shadow-0">
-            <div class="card-header">
+            <div class="card-header d-flex align-items-center justify-content-between">
                 <h4 class="card-title mb-1">Invoice Information</h4>
+                <button class="btn ms-auto btn-success" id="printButton" onclick="printPage()">
+                    <i class=" fas fa-print"></i>
+                </button>
             </div>
             <div class="card-body pt-0">
                 <div class="form-horizontal" >
@@ -270,6 +273,119 @@ Invoices | Add New Invoice
         </div>
     </div> 
 </div>
+<div class="container d-none"id="printPage">
+    <div class="row align-items-center">
+        <div class="col-12 col-md-6">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="" width="200">
+        </div>
+        <div class="col-12 col-md-6">
+            <h4 class="text-right">Taza Trading Inc.</h4>
+            <h5 class="text-right text-danger">Sales Invoice</h5>
+        </div>
+    </div>
+    <div class="row align-items-center">
+        <div class="col-12 col-md-6">
+            <h6>HOUSTON, TX 77063</h6>
+            <h6>Phone : + 1(713) 900‐8050 / +1(832) 871‐0098</h6>
+            <h6>fax : + 1(713) 900‐8050</h6>
+            <h6 class="text-primary">Sales@tazatrading.com</h6>
+            <h6 class="text-primary">www.Tazatrading.com</h6>
+        </div>
+        <div class="col-12 col-md-6">
+            
+            <h6 class="text-right mb-3">Date:  <span class="border border-secondary p-2">{{  date('m-d-Y', strtotime($Invoice->date));
+            }}</span></h6>
+            <h6 class="text-right">Invoice Number: <span class="border border-secondary p-2">{{ $Invoice->id }}</span></h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-borderless">
+                <thead class="bg-success">
+                  <tr>
+                    <th scope="col" colspan="2" class="text-center">Bill to</th>
+                    <th scope="col" colspan="2" class="text-center">Ship to</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Customer Name</th>
+                    <td>{{$Invoice->Client->name}}</td>
+                    <th>Customer Name</th>
+                    <td>{{$Invoice->Client->name}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Customer Company</th>
+                    <td>{{$Invoice->Client->companyName}}</td>
+                    <th>Customer Company</th>
+                    <td>{{$Invoice->Client->companyName}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Street Address</th>
+                    <td>{{$Invoice->Client->street}}</td>
+                    <th>Street Address</th>
+                    <td>{{$Invoice->Client->street}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">City, State ZIP code</th>
+                    <td>{{$Invoice->Client->companyCity}},
+                        {{$Invoice->Client->CompanyState}},
+                    {{ $Invoice->Client->PostalCode }}
+                    </td>
+                    <th>City, State ZIP code</th>
+                    <td>{{$Invoice->Client->companyCity}},
+                        {{$Invoice->Client->CompanyState}},
+                    {{ $Invoice->Client->PostalCode }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Phone</th>
+                    <td>{{$Invoice->Client->phone}}</td>
+                    <th>Phone</th>
+                    <td>{{$Invoice->Client->phone}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Pack Price</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @foreach ($ShowDataInvoices as $DataInvoice)
+
+                  <tr>
+                    <td>{{$DataInvoice->qty}}</td>
+                    <td>{{$DataInvoice->Product->name}} 1 x {{$DataInvoice->Product->PacksPerBox}}</td>
+                    <td>{{ number_format($DataInvoice->Product->BoxCostPrice,2) }}</td>
+                    <td>{{ number_format($DataInvoice->Product->PacksPerBox,2) }}</td>
+                    <td>{{ number_format($DataInvoice->Total, 2) }}</td>
+                  </tr>
+                    @endforeach                  
+                  
+                </tbody>
+              </table>
+              <table class="table table-bordered">
+                <tr>
+                    <th>Total Packs</th>
+                    <td>{{$Invoice->totalpacks}}</td>
+                    <th class="text-center" style="width: 50%">Sub Total</th>
+                    <td>{{ number_format($Invoice->subtotal,2) }}</td>
+                </tr>
+              </table>
+              
+        </div>
+    </div>
+</div>
 <!-- row -->
 
 @endsection
@@ -295,7 +411,17 @@ $(function() {
         $('#product-name-list').select2({
 			placeholder: 'Product Name',
 		});
+
 	});
+    
 });
+function printPage(){
+        let printContents = document.getElementById('printPage').innerHTML;
+        let originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+        location.reload();
+    }
 </script>
 @endsection
