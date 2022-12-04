@@ -69,7 +69,7 @@ Purchases | Add New Purchase
 
                         <div class="col-sm-12 col-md-6">
                         @include('layouts.component.form-input.input',['name'=>'quantity','value'=>$purchase->quantity,'placeholder'=>"Quantity"])
-                        <input type="text" value="{{ isset($purchase->quantity)?$purchase->quantity:'' }}" name="quantity_old">
+                        <input type="hidden" value="{{ isset($purchase->quantity)?$purchase->quantity:'' }}" name="quantity_old">
                         </div>
                         <div class="col-sm-12 col-md-6">
                         @include('layouts.component.form-input.input',['name'=>'PurchasePrice','value'=>$purchase->PurchasePrice,'placeholder'=>"Purchase Price"])

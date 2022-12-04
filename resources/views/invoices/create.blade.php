@@ -390,7 +390,7 @@ Invoices | Add New Invoice
                         <div class="col-sm-12 col-md-4 mx-auto">
                             <div class="form-group mb-0 mt-3 justify-content-end">
                                 <div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" id="print" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-secondary">Cancel</button>
                                 </div>
                             </div>
@@ -434,7 +434,18 @@ $(function() {
 	});
 });
 
-    
 
 </script>
+    <script type="text/javascript">
+        function printDiv() {
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
+        
+
+    </script>
 @endsection

@@ -29,10 +29,6 @@ class InvoiceController extends Controller
     }
     public function create()
     {
-        // $values = DB::table('payments')
-        // ->selectRaw('sum(totalInvoice) as totalInvoice, sum(amount) as amount, (sum(totalInvoice)-sum(amount)) as total_balance')
-        // ->where('clients_id', 1)
-        // ->first();
         return view("invoices.create",new InvoicesViewModel());
     }
 
