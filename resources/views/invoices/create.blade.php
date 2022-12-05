@@ -253,39 +253,39 @@ Invoices | Add New Invoice
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{old('name')}}" name="name" id="customerName2" placeholder="Customer Name" >
+                                        <input type="text" class="form-control" value="{{old('name2')}}" name="name2" id="customerName2" placeholder="Customer Name" >
                                     </div>                            
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" value="{{old('companyName')}}"  name="companyName" id="companyName2" placeholder="Company Name">
+                                            <input type="text" class="form-control" value="{{old('companyName2')}}"  name="companyName2" id="companyName2" placeholder="Company Name">
                                         </div>                            
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{old('street')}}" name="street" id="streetAddress2" placeholder="Street Address">
+                                        <input type="text" class="form-control" value="{{old('street2')}}" name="street2" id="streetAddress2" placeholder="Street Address">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{old('companyCity')}}" name="companyCity" id="city2" placeholder="City">
+                                        <input type="text" class="form-control" value="{{old('companyCity2')}}" name="companyCity2" id="city2" placeholder="City">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{old('CompanyState')}}" name="CompanyState" id="state2" placeholder="State">
+                                        <input type="text" class="form-control" value="{{old('CompanyState2')}}" name="CompanyState2" id="state2" placeholder="State">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{old('PostalCode')}}" name="PostalCode" id="zipCode2" placeholder="Zip Code">
+                                        <input type="text" class="form-control" value="{{old('PostalCode2')}}" name="PostalCode2" id="zipCode2" placeholder="Zip Code">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{old('phone')}}" name="phone" id="phone2" placeholder="Phone">
+                                        <input type="text" class="form-control" value="{{old('phone2')}}" name="phone2" id="phone2" placeholder="Phone">
                                     </div>
                                 </div>
                             </div>           

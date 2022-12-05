@@ -3,40 +3,33 @@ $("#clients_id").on("change", function () {
     var clients_id = $("#clients_id").val();
     getClient(clients_id);
     $('input[name="additionalDiscount"]').on("keyup", function () {
+        var subtotal =
+            +$('input[name="subtotal"]').val() -
+            +$('input[name="additionalDiscount"]').val() +
+            +$('input[name="tax"]').val();
         $('input[name="total"]').val(
-            +$('input[name="subtotal"]').val() -
-                +$('input[name="additionalDiscount"]').val() +
-                +$('input[name="tax"]').val()
+            subtotal - +$('input[name="customerbalance"]').val()
         );
-        console.log($('input[name="total"]').val());
-        $("#totals").val(
-            +$('input[name="subtotal"]').val() -
-                +$('input[name="additionalDiscount"]').val() +
-                +$('input[name="tax"]').val() +
-                +$('input[name="customerbalance"]').val()
-        );
+        $("#totals").val(subtotal - +$('input[name="customerbalance"]').val());
     });
 
     $('input[name="tax"]').on("keyup", function () {
+        var subtotal =
+            +$('input[name="subtotal"]').val() -
+            +$('input[name="additionalDiscount"]').val() +
+            +$('input[name="tax"]').val();
         $('input[name="total"]').val(
-            +$('input[name="subtotal"]').val() -
-                +$('input[name="additionalDiscount"]').val() +
-                +$('input[name="tax"]').val()
+            subtotal - +$('input[name="customerbalance"]').val()
         );
-        $("#totals").val(
-            +$('input[name="subtotal"]').val() -
-                +$('input[name="additionalDiscount"]').val() +
-                +$('input[name="tax"]').val() +
-                +$('input[name="customerbalance"]').val()
-        );
+        $("#totals").val(subtotal - +$('input[name="customerbalance"]').val());
     });
 
     $('input[name="paid"]').on("keyup", function () {
         $('input[name="Left"]').val(
-            +$('input[name="total"]').val() - +$('input[name="paid"]').val()
+            +$('input[name="paid"]').val() - +$('input[name="total"]').val()
         );
         $("#Left").val(
-            +$('input[name="total"]').val() - +$('input[name="paid"]').val()
+            +$('input[name="paid"]').val() - +$('input[name="total"]').val()
         );
     });
 });
@@ -53,8 +46,17 @@ function getClient(clients_id) {
             dataType: "json",
             success: function (data) {
                 if (data.payment) {
-                    $("#customerBalance").val(data.payment.total_balance);
-                    $("#customerBalances").val(data.payment.total_balance);
+                    console.log(data);
+                    $("#customerBalance").val(
+                        data.payment.total_balance == null
+                            ? 0
+                            : data.payment.total_balance
+                    );
+                    $("#customerBalances").val(
+                        data.payment.total_balance == null
+                            ? 0
+                            : data.payment.total_balance
+                    );
                 }
                 if (data.client) {
                     $("#customerName").val(data.client.name);

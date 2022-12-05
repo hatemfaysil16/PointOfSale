@@ -110,39 +110,39 @@ Invoices | Invoice ID {{ $Invoice->id }}
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->name}}" id="customerName" placeholder="Customer Name" disabled>
+                                        <input type="text" class="form-control" value="{{$Invoice->shipTo_name}}" id="customerName" placeholder="Customer Name" disabled>
                                     </div>                            
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="companyName" value="{{$Invoice->Client->companyName}}" placeholder="Company Name" disabled>
+                                            <input type="text" class="form-control" id="companyName" value="{{$Invoice->shiptTo_companyName}}" placeholder="Company Name" disabled>
                                         </div>                            
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->street}}"  id="streetAddress" placeholder="Street Address" disabled>
+                                        <input type="text" class="form-control" value="{{$Invoice->shiptTo_address}}"  id="streetAddress" placeholder="Street Address" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control"  value="{{$Invoice->Client->companyCity}}" id="city" placeholder="City" disabled>
+                                        <input type="text" class="form-control"  value="{{$Invoice->shiptTo_city}}" id="city" placeholder="City" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->CompanyState}}"  id="state" placeholder="State" disabled>
+                                        <input type="text" class="form-control" value="{{$Invoice->shiptTo_state}}"  id="state" placeholder="State" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->PostalCode}}" id="zipCode" placeholder="Zip Code" disabled>
+                                        <input type="text" class="form-control" value="{{$Invoice->shiptTo_postalCode}}" id="zipCode" placeholder="Zip Code" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" value="{{$Invoice->Client->phone}}"  id="phone" placeholder="Phone" disabled>
+                                        <input type="text" class="form-control" value="{{$Invoice->shiptTo_phone}}"  id="phone" placeholder="Phone" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -312,19 +312,19 @@ Invoices | Invoice ID {{ $Invoice->id }}
                     <th scope="row">Customer Name</th>
                     <td>{{$Invoice->Client->name}}</td>
                     <th>Customer Name</th>
-                    <td>{{$Invoice->Client->name}}</td>
+                    <td>{{$Invoice->shipTo_name}}</td>
                   </tr>
                   <tr>
                     <th scope="row">Customer Company</th>
                     <td>{{$Invoice->Client->companyName}}</td>
                     <th>Customer Company</th>
-                    <td>{{$Invoice->Client->companyName}}</td>
+                    <td>{{$Invoice->shiptTo_companyName}}</td>
                   </tr>
                   <tr>
                     <th scope="row">Street Address</th>
                     <td>{{$Invoice->Client->street}}</td>
                     <th>Street Address</th>
-                    <td>{{$Invoice->Client->street}}</td>
+                    <td>{{$Invoice->shiptTo_address}}</td>
                   </tr>
                   <tr>
                     <th scope="row">City, State ZIP code</th>
@@ -333,16 +333,16 @@ Invoices | Invoice ID {{ $Invoice->id }}
                     {{ $Invoice->Client->PostalCode }}
                     </td>
                     <th>City, State ZIP code</th>
-                    <td>{{$Invoice->Client->companyCity}},
-                        {{$Invoice->Client->CompanyState}},
-                    {{ $Invoice->Client->PostalCode }}
+                    <td>{{$Invoice->shiptTo_city}},
+                        {{$Invoice->shiptTo_state}},
+                    {{ $Invoice->shiptTo_postalCode }}
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">Phone</th>
                     <td>{{$Invoice->Client->phone}}</td>
                     <th>Phone</th>
-                    <td>{{$Invoice->Client->phone}}</td>
+                    <td>{{$Invoice->shiptTo_phone}}</td>
                   </tr>
                 </tbody>
               </table>

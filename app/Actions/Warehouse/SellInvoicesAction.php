@@ -10,7 +10,7 @@ class SellInvoicesAction
         foreach($datas as $data){
             $available = Warehouse::where('products_id',$data['products_id'])->latest()->pluck('available')->first();
             $warehouse= Warehouse::where('products_id',$data['products_id'])->first();
-            $warehouse->sold = $data['qty'];
+            $warehouse->sold = $warehouse->sold + $data['qty'];
             $warehouse->available = +$available - +$warehouse->sold;
             $warehouse->save();
         }

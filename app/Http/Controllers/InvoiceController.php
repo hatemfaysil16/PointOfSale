@@ -57,6 +57,7 @@ class InvoiceController extends Controller
     }
 
     public function  storeInvoicesaccount(InvoicesAccountRequest $request){
+        /*
         if($request->checkbox == ['on']){
         }else{
           $Client = Client::find($request->clients_id);
@@ -86,7 +87,7 @@ class InvoiceController extends Controller
           }
           $Client->save();
         }
-
+*/
         $Invoices_account = Invoices_account::where('users_id',Auth::user()->id)->latest()->first();
         if(!empty($Invoices_account)){
             $number =$Invoices_account->number+1;
@@ -99,7 +100,10 @@ class InvoiceController extends Controller
             'amount'=>$request->paid,
             'net'=>$request->total- $request->paid,
         ]);
-        $dataInvoices= Invoices_account::create($request->validated()+['number'=>$number]+['users_id'=>Auth::user()->id]);
+        $dataInvoices= Invoices_account::create($request->validated()+['number'=>$number]+['users_id'=>Auth::user()->id]
+        + ['shipTo_name'=> $request->name2] + ['shiptTo_companyName'=>$request->companyName2] + ['shiptTo_address'=>$request->street2] + ['shiptTo_city'=>$request->companyCity2]
+        + ['shiptTo_state'=>$request->CompanyState2] + ['shiptTo_postalCode'=>$request->PostalCode2] + ['shiptTo_phone'=>$request->phone2]
+    );
         $Invoice = Invoice::where('users_id',Auth::user()->id)->where('invoicenumber',$dataInvoices->number)->get()->pluck('id');
         foreach($Invoice as $id){Invoice::find($id)->update(['type'=>'accept']);}
         $dataInvoice = Invoice::where('users_id',Auth::user()->id)->where('invoicenumber',$dataInvoices->number)->get();

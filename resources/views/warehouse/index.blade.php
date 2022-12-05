@@ -71,7 +71,7 @@
                                 <td>{{$item->available}}</td>
                                 <td>{{$item->Product->BoxPrice_shop}}</td>
                                 <td>{{$item->Product->BoxPrice_company}}</td>
-                                <td>25/2/2000</td>
+                                <td>{{ $item->ProductionDate }}</td>
                                 <td>{{$item->ExpiryDate}}</td>
                                 <td>{{$item->Product->ProductBarcode}}</td>
                                 <td>
