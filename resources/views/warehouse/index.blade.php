@@ -56,6 +56,9 @@
                         </thead>
                         <tbody>
                             @foreach ($warehouse as $key=>$item)
+                            @php 
+                            $key += 1;
+                            @endphp
                             <tr>
                                 <th scope="row">{{$key++}}</th>
                                 <td>{{$item->Product->name}}</td>

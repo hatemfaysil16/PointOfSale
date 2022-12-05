@@ -56,7 +56,7 @@ Invoices | Add New Invoice
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
-                                <select class="form-control"  id="productBarcode" placeholder="Product Name" name="ProductBarcode" >
+                                <select class="form-control select2"  id="productBarcode" placeholder="Product Name" name="ProductBarcode" >
                                     <option selected="" label="Choose Barcode" disabled>Choose Barcode</option>
                                     @foreach ($product as $item)
                                         @if (isset($product->id))
@@ -127,8 +127,8 @@ Invoices | Add New Invoice
                                 <tr>
                                     <th scope="row">{{$i++}}</th>
                                     <td>{{$DataInvoice->Product->name}}</td>
-                                    <td>{{$DataInvoice->Product->BoxCostPrice}}</td>
-                                    <td>{{$DataInvoice->Product->PacksPerBox}}</td>
+                                    <td>{{$DataInvoice->Product->BoxPrice_shop / $DataInvoice->Product->PacksPerBox}}</td>
+                                    <td>{{$DataInvoice->Product->BoxPrice_shop}}</td>
                                     <td>{{$DataInvoice->qty}}</td>
                                     <td>{{$DataInvoice->Total}}</td>
                                     <td>
@@ -173,7 +173,7 @@ Invoices | Add New Invoice
                                         <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                     </div>
                                 </div>
-                                <input class="form-control" id="production-date" placeholder="MM/DD/YYYY" type="date" name="date" value="{{ $Invoice->date }}" required>
+                                <input class="form-control" id="invoice-date" placeholder="MM/DD/YYYY" type="date" name="date" value="{{ $Invoice->date }}" required>
                             </div>
                             
                             
@@ -250,7 +250,6 @@ Invoices | Add New Invoice
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <h6 class="card-title mb-1">Ship To</h6>
-
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-group">
@@ -416,10 +415,6 @@ $(function() {
 	'use strict'
 	
 	// Datepicker
-	$('.fc-datepicker').datepicker({
-		showOtherMonths: true,
-		selectOtherMonths: true
-	});
     $(document).ready(function() {
 		$('.select2').select2({
 			placeholder: 'Invoice to',
@@ -428,6 +423,9 @@ $(function() {
         $('#product-name-list').select2({
 			placeholder: 'Product Name',
 		});
+        $('#productBarcode').select2({
+            placeholder:'Choose Barcode'
+        })
 
 
 

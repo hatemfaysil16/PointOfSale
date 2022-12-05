@@ -46,7 +46,7 @@ Products
                                 <td>{{$item->ProductGroup}}</td>
                                 <td>{{$item->CountryOfOrigin}}</td>
                                 <td>{{$item->Manufacturer}}</td>
-                                <td>{{$item->BoxCostPrice}}</td>
+                                <td>{{$item->BoxPrice_shop}}</td>
                                 <td>{{$item->BoxPrice_company}}</td>
                                 <td>
                                     <div class="btn-icon-list">

@@ -29,6 +29,13 @@ class CreateInvoicesAccountsTable extends Migration
             $table->date('date');
             $table->foreignId('clients_id')->references('id')->on('clients')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
+            $table->string('shipTo_name');
+            $table->string('shiptTo_companyName');
+            $table->string('shiptTo_address');
+            $table->string('shiptTo_city');
+            $table->string('shiptTo_state');
+            $table->string('shiptTo_postalCode');
+            $table->string('shiptTo_phone');
         });
     }
 

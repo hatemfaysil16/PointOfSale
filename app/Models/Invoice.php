@@ -19,7 +19,9 @@ class Invoice extends Model
     }
     public function getTotalAttribute()
     {
-        return $this->Product->PacksPerBox * $this->qty;
+        
+        //return $this->Product->PacksPerBox * $this->qty;
+        return $this->Product->BoxPrice_shop * $this->qty;
     }
 
    public function scopeSearch($query)
