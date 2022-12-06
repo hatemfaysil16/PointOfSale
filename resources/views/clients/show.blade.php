@@ -27,10 +27,10 @@ Clients | {{ $Client->name }}
             </div>
 
             <div class="card-body">
-                <h1>{{$payments->total_balance}} USD</h1>
+                <h1>{{ number_format($ClientBalance, 2) }} USD</h1>
             </div>
 
-            <form class="mx-2" action="{{route('pushMony')}}" method="POST">
+            <form class="mx-2" action="{{route('withdraw')}}" method="POST">
                 @csrf
                 @method("POST")
                 <div class="input-group">
@@ -41,11 +41,11 @@ Clients | {{ $Client->name }}
             </form>
 
 
-            <form class="mx-2 mt-2 mb-2" action="{{route('pullMony')}}" method="POST">
+            <form class="mx-2 mt-2 mb-2" action="{{route('insert')}}" method="POST">
                 @csrf
                 @method("POST")
                 <div class="input-group">
-                    <input class="form-control" type="text" name="totalInvoice" value="">
+                    <input class="form-control" type="text" name="amount" value="">
                     <input type="hidden" name="clients_id" value="{{$Client->id}}">
                     <button class="btn btn-danger">insert</button>
                 </div>
@@ -122,7 +122,7 @@ Clients | {{ $Client->name }}
                                 <th>Invoice ID</th>
                                 <th>Invoice Type</th>
                                 <th>Invoice Date</th>
-                                <th>Customer Name</th>
+                                <th>Shipped to</th>
                                 <th>City</th>
                                 <th>State</th>
                                 <th>Total</th>
@@ -134,15 +134,15 @@ Clients | {{ $Client->name }}
                         <tbody>
                             @foreach ($ShowInvoices_account as $key=>$item)
                             <tr>
-                                <th scope="row">{{$key++}}</th>
+                                <th scope="row">{{$item->id}}</th>
                                 <td>{{$item->invoicetype}}</td>
                                 <td>{{$item->date}}</td>
-                                <td>{{$item->Client->name}}</td>
-                                <td>{{$item->Client->companyCity}}</td>
-                                <td>{{$item->Client->CompanyState}}</td>
-                                <td>{{$item->total}}</td>
-                                <td>{{$item->paid}}</td>
-                                <td>{{$item->Left}}</td>
+                                <td>{{$item->shipTo_name}}</td>
+                                <td>{{$item->shiptTo_city}}</td>
+                                <td>{{$item->shiptTo_state}}</td>
+                                <td>{{ number_format($item->total,2) }} $</td>
+                                <td>{{ number_format($item->paid,2)}} $</td>
+                                <td>{{number_format($item->Left,2)}} $</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="{{ route("invoices.show",$item->id) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>

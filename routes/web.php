@@ -20,8 +20,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     
     Route::resource("clients", ClientController::class);
-    Route::post("clients/pushMony",[ClientController::class,'pushMony'])->name('pushMony');
-    Route::post("clients/pullMony",[ClientController::class,'pullMony'])->name('pullMony');
+    Route::post("clients/insert",[ClientController::class,'insert'])->name('insert');
+    Route::post("clients/withdraw",[ClientController::class,'withdraw'])->name('withdraw');
  
     
     Route::resource("invoices",InvoiceController::class);

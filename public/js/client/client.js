@@ -45,8 +45,9 @@ function getClient(clients_id) {
             },
             dataType: "json",
             success: function (data) {
+                console.log(data);
                 if (data.payment) {
-                    console.log(data);
+                    console.log(data.payment);
                     $("#customerBalance").val(
                         data.payment.total_balance == null
                             ? 0

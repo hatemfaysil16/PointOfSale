@@ -46,8 +46,8 @@ Products
                                 <td>{{$item->ProductGroup}}</td>
                                 <td>{{$item->CountryOfOrigin}}</td>
                                 <td>{{$item->Manufacturer}}</td>
-                                <td>{{$item->BoxPrice_shop}}</td>
-                                <td>{{$item->BoxPrice_company}}</td>
+                                <td>{{number_format($item->BoxPrice_shop,2)}} $</td>
+                                <td>{{number_format($item->BoxPrice_company)}} $</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="{{route('products.show',$item->id)}}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>

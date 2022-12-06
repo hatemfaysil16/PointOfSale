@@ -42,7 +42,7 @@
                                 <th>Product Group</th>
                                 <th>Country of Origin</th>
                                 <th>Manufacturer</th>
-                                <th>WarehouseNumber</th>
+                                <th>Warehouse Number</th>
                                 <th>Buy</th>
                                 <th>Sold</th>
                                 <th>Available</th>
@@ -69,8 +69,8 @@
                                 <td>{{$item->buy}}</td>
                                 <td>{{$item->sold}}</td>
                                 <td>{{$item->available}}</td>
-                                <td>{{$item->Product->BoxPrice_shop}}</td>
-                                <td>{{$item->Product->BoxPrice_company}}</td>
+                                <td>{{number_format($item->Product->BoxPrice_shop,2)}} $</td>
+                                <td>{{number_format($item->Product->BoxPrice_company,2)}} $</td>
                                 <td>{{ $item->ProductionDate }}</td>
                                 <td>{{$item->ExpiryDate}}</td>
                                 <td>{{$item->Product->ProductBarcode}}</td>

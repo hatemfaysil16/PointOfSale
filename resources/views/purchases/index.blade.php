@@ -53,10 +53,10 @@ Clients | All Purchases
                                 <td>{{!empty($item->products_id)?$item->Product->name:''}}</td>
                                 <td>{{$item->date}}</td>
                                 <td>{{$item->quantity}}</td>
-                                <td>{{$item->PurchasePrice}}</td>
+                                <td>{{number_format($item->PurchasePrice,2)}} $</td>
                                 <td>{{$item->ProductionDate}}</td>
                                 <td>{{$item->ExpiryDate}}</td>
-                                <td>{{$item->total}}</td>
+                                <td>{{number_format($item->total,2)}} $</td>
                                 <td>
                                     <div class="btn-icon-list">
                                         <a href="{{ route("purchases.show", $item->id) }}" class="btn btn-success btn-icon"><i class="fas fa-eye"></i></a>

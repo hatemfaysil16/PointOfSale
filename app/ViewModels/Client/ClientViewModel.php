@@ -11,18 +11,24 @@ class ClientViewModel extends ViewModel
     public  $Client;
     public  $type;
     public  $ShowInvoices_account;
-    public  $payments;
+    // public  $payments;
+    public $ClientBalance;
 
     public function __construct($Client = null)
     {
         $this->type = is_null($Client)?'Add':'Edit' ; 
-        $this->payments = is_null($Client)?'':
-            DB::table('payments')
-            ->selectRaw('sum(totalInvoice) as totalInvoice, sum(amount) as amount, (sum(totalInvoice)-sum(amount)) as total_balance')
-            ->where('clients_id', $Client->id)
-            ->first();; 
+        // $this->payments = is_null($Client)?'':
+        //     DB::table('payments')
+        //     ->selectRaw('sum(totalInvoice) as totalInvoice, sum(amount) as amount, (sum(totalInvoice)-sum(amount)) as total_balance')
+        //     ->where('clients_id', $Client->id)
+        //     ->first();; 
         $this->Client = is_null($Client) ? new Client(old()) : $Client;
-        $this->ShowInvoices_account = is_null($Client)?'':Invoices_account::where('clients_id',$Client->id)->paginate(5); 
+        $this->ShowInvoices_account = is_null($Client)?'':Invoices_account::where('clients_id',$Client->id)->paginate(10); 
+        $this->ClientBalance = is_null($Client) ? '' :
+        DB::table('invoices_accounts')
+        ->where('clients_id', $Client->id)
+        ->get()->sum('Left');
+
     }
 
     public function action(): string

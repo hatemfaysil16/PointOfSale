@@ -37,10 +37,15 @@ class InvoiceController extends Controller
     }
 
     public function ajaxClient(Client $client){
-        $payments = DB::table('payments')
-        ->selectRaw('sum(totalInvoice) as totalInvoice, sum(amount) as amount, (sum(totalInvoice)-sum(amount)) as total_balance')
+        $payments = DB::table('invoices_accounts')
         ->where('clients_id', $client->id)
-        ->first();
+        ->get()->sum('Left');
+
+
+        // $payments = DB::table('payments')
+        // ->selectRaw('sum(totalInvoice) as totalInvoice, sum(amount) as amount, (sum(totalInvoice)-sum(amount)) as total_balance')
+        // ->where('clients_id', $client->id)
+        // ->first();
         return ['client'=>$client,'payment'=>$payments];
     }
 
@@ -94,12 +99,12 @@ class InvoiceController extends Controller
         }else{
             $number = 1;
         }
-        Payment::create([
-            'clients_id'=>$request->clients_id,
-            'totalInvoice'=>$request->total,
-            'amount'=>$request->paid,
-            'net'=>$request->total- $request->paid,
-        ]);
+        // Payment::create([
+        //     'clients_id'=>$request->clients_id,
+        //     'totalInvoice'=>$request->total,
+        //     'amount'=>$request->paid,
+        //     'net'=>$request->total- $request->paid,
+        // ]);
         $dataInvoices= Invoices_account::create($request->validated()+['number'=>$number]+['users_id'=>Auth::user()->id]
         + ['shipTo_name'=> $request->name2] + ['shiptTo_companyName'=>$request->companyName2] + ['shiptTo_address'=>$request->street2] + ['shiptTo_city'=>$request->companyCity2]
         + ['shiptTo_state'=>$request->CompanyState2] + ['shiptTo_postalCode'=>$request->PostalCode2] + ['shiptTo_phone'=>$request->phone2]
@@ -108,7 +113,7 @@ class InvoiceController extends Controller
         foreach($Invoice as $id){Invoice::find($id)->update(['type'=>'accept']);}
         $dataInvoice = Invoice::where('users_id',Auth::user()->id)->where('invoicenumber',$dataInvoices->number)->get();
         app(SellInvoicesAction::class)->handle($dataInvoice);
-        return \redirect()->route('invoices.index')->with('add','Success create data');     
+        return \redirect()->route('invoices.show',$dataInvoices->id)->with('add','Success create data');     
     }
 
 
